@@ -1,7 +1,22 @@
-.heroHeaderH1{
-    direction: rtl;
-    font-size: 1.4rem;
-}.WayThessalonikiContainer {
+.heroHeaderContainer {
+    text-align: center;
+    margin:  0;
+}
+
+.heroHeaderH1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.heroHeaderSubtext {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 0.5rem;
+}
+
+
+.WayThessalonikiContainer {
     border-bottom: 1px solid gray;
     width: 80%;
     margin: 20px auto;
@@ -47,4 +62,5 @@
     color: #555;
     line-height: 1.5;
     font-size: 1rem;
+    margin-bottom: 10px;
 }

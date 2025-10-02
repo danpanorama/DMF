@@ -25,7 +25,10 @@
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-
+.navbar.scrolled .hamburger div {
+background-color: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 /* הלוגו */
 .navbar .logo {
   font-weight: bold;
@@ -38,12 +41,14 @@
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
+  
 }
 
 .navbar .hamburger div {
   width: 25px;
   height: 3px;
-  background-color: #333;
+  
+  background-color: white;
   transition: all 0.3s ease;
 }
 

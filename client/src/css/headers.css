@@ -1,0 +1,50 @@
+.heroHeaderH1{
+    direction: rtl;
+    font-size: 1.4rem;
+}.WayThessalonikiContainer {
+    border-bottom: 1px solid gray;
+    width: 80%;
+    margin: 20px auto;
+    padding-left: 10px;
+}
+
+.questionContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.question {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.sign {
+    transition: transform 0.3s ease;
+}
+
+.sign.open {
+    transform: rotate(180deg);
+}
+
+/* ✨ Slide down effect */
+.answerWrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.answerWrapper.open {
+    max-height: 200px; /* מספיק גבוה כדי להכיל את הטקסט */
+    padding-top: 10px;
+}
+
+.answer {
+    margin: 0;
+    color: #555;
+    line-height: 1.5;
+    font-size: 1rem;
+}

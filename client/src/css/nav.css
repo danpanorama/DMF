@@ -1,0 +1,87 @@
+/* ===================== NAVBAR ===================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--spacing-md) 0;
+  z-index: 1000;
+ 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: transparent; /* התחלה שקופה */
+}
+
+/* Inner container שמרכז את התוכן ומעניק רווח מהקצוות */
+.navbar .container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* רקע אחרי גלילה */
+.navbar.scrolled {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* הלוגו */
+.navbar .logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* האמבורגר */
+.navbar .hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.navbar .hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.3s ease;
+}
+
+/* תפריט צדדי (מוסתר בהתחלה) */
+.navbar .menu {
+  position: fixed;
+  top: 0;
+  right: -100%; /* מחוץ למסך */
+  width: 70%;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 20px;
+  gap: 20px;
+  transition: right 0.3s ease;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+}
+
+.navbar .menu.active {
+  right: 0; /* נפתח */
+}
+
+.navbar .menu a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar .menu a:hover {
+  color: var(--primary-color);
+}
+
+/* media query למובייל */
+@media(min-width: 768px){
+  .navbar .hamburger,
+  .navbar .menu {
+    display: none; /* במחשב לא צריך */
+  }
+}

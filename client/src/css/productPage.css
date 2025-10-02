@@ -1,0 +1,140 @@
+.pp-gallery-img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.pp-gallery-thumbs img{
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    opacity: 0.7;
+}
+
+.pp-gallery-thumbs .swiper-slide-thumb-active img{
+    opacity: 1;
+    border: 2px solid #000;
+}
+
+.pp-icons{
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.pp-icon-item{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    background: #f5f5f5;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.pp-features{
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.pp-cta{
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.pp-btn{
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.pp-description-block{
+    margin: 15px 0;
+}
+
+.pp-detailed{
+    margin-top: 10px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.pp-breadcrumbs{
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.pp-breadcrumbs a{
+    color: #333;
+    text-decoration: none;
+}
+
+.pp-breadcrumbs a:hover{
+    text-decoration: underline;
+}
+
+.pp-reviews{
+    margin: 20px 0;
+}
+
+.pp-review{
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+/* Contact Form Styles */
+.pp-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 30px 0;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #f5f5f5;
+  max-width: 600px;
+  width: 95%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.pp-contact-form input,
+.pp-contact-form textarea {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.pp-contact-form input:focus,
+.pp-contact-form textarea:focus {
+  border-color: #000;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.pp-contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.pp-btn {
+  padding: 12px 20px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pp-btn:hover {
+  background-color: #333;
+}

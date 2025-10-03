@@ -107,7 +107,7 @@ function ProductPage() {
 
         {/* תיאור מפורט */}
         <ProductDescription
-          description={product.description}
+          description={product.businessPotential}
           detailedDescription={product.detailedDescription}
         />
 

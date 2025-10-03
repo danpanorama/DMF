@@ -13,6 +13,7 @@
   gap: 30px;
   box-shadow: -2px 0 12px rgba(0,0,0,0.15);
   transition: right 0.35s ease;
+  overflow: scroll;
 }
 
 .navbar-menu.active {
@@ -79,9 +80,9 @@
 }
 
 /* כפתור שיתוף */
-.menu-share {
+/* .menu-share {
   margin-top: auto;
-}
+} */
 
 .menu-share button {
   padding: 12px 20px;

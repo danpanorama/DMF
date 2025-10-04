@@ -11,7 +11,10 @@ import {
 } from "../constants/reviewsConstants";
 
 const initialState = {
-  reviews: [],
+  reviews: [
+
+
+  ],
   loading: false,
   error: null,
 };

@@ -39,18 +39,16 @@
 }
 
 
-.HomeContainer{
-  width: 95%;
+/* ברירת מחדל למסכים גדולים */
+.HomeContainer {
+  width: 60%;
   margin: 0 auto;
   transform: translateY(-30px);
 }
 
-
-
-@media (min-width: 600px) {
-
-  .HomeContainer{
-    width: 60%;
-    margin: 0 auto;
+/* מסכים קטנים עד 1024px */
+@media (max-width: 700px) {
+  .HomeContainer {
+    width: 95%;
   }
 }

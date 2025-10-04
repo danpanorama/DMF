@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../../pages/Home";
 import About from "../../pages/About";
 import NotFound from "../../pages/NotFound";
-import ProductPage from "../products/ProductPage";
+import ProductPage from "../../pages/ProductPage";
 
 function NavRoutes() {
   return (

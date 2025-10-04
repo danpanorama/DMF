@@ -1,0 +1,65 @@
+/* .globalButton {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+}
+
+.globalButton.primary {
+  background-color: #0078ff;
+  color: white;
+}
+
+.globalButton.primary:hover {
+  background-color: #005fcc;
+}
+
+.globalButton.secondary {
+  background-color: white;
+  color: #0078ff;
+  border: 1px solid #0078ff;
+}
+
+.globalButton.secondary:hover {
+  background-color: #0078ff;
+  color: white;
+} */
+
+
+
+
+/* ===================== GLOBAL BUTTON ===================== */
+.globalButton {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: var(--font-body);
+}
+
+/* כפתור ראשי */
+.globalButton.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.globalButton.primary:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* כפתור משני */
+.globalButton.secondary {
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.globalButton.secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}

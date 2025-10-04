@@ -3,11 +3,15 @@ import Navbar from "./components/nav/Navbar";
 import NavRoutes from "./components/nav/NavRoutes";
 import Footer from "./components/footer/Footer";
 import ScrollToTop from "./components/utils/ScrollToTp";
+import GlobalLoader from "./components/utils/GlobalLoader";
+import GlobalError from "./components/utils/GlobalError";
 
 function App() {
   return (
     <Router>
       <Navbar />
+       <GlobalLoader />
+      <GlobalError />
        <ScrollToTop />
       <NavRoutes />
       <Footer/>

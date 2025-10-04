@@ -1,55 +1,26 @@
-// import { useParams } from "react-router-dom";
-// import { products } from "../../database/productData";
-// import ProductGallery from "./ProductGallery";
-// import ProductMap from "./ProductMap";
-// import ProductIcons from "./ProductIcons";
 
-// function ProductPage() {
-//   const { id } = useParams();
-//   const product = products.find((p) => p.id === parseInt(id));
-
-//   if (!product) return <p>Product not found</p>;
-
-//   return (
-//     <div className="productPageContainer">
-//       <ProductGallery images={product.images} name={product.name} />
-
-//       <div className="productPageSpace">
-//         <h1 className="productPageName">{product.name}</h1>
-//         <p className="productPageInfo">{product.description}</p>
-//      <ProductIcons
-//           rooms={product.rooms}
-//           bathrooms={product.bathrooms}
-//           floor={product.floor}
-//           size={product.size}
-//         />
-//         <ProductMap address={product.address} />
-
-   
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ProductPage;
 import { useParams } from "react-router-dom";
-import { products } from "../../database/productData";
+import { products } from "../database/productData";
 
 // קומפוננטות
-import Breadcrumbs from "./productcomponents/Breadcrumbs";
-import ProductGalleryEnhanced from "./productcomponents/ProductGalleryEnhanced";
-import ProductIconsEnhanced from "./productcomponents/ProductIconsEnhanced";
-import ProductFeatures from "./productcomponents/ProductFeatures";
-import ProductDescription from "./productcomponents/ProductDescription";
-import ProductCTA from "./productcomponents/ProductCTA";
-import ProductMap from "./ProductMap";
-import ContactForm from "./productcomponents/ContactForm";
-import Reviews from "./productcomponents/Reviews";
+import Breadcrumbs from "../components/products/productcomponents/Breadcrumbs";
+import ProductGalleryEnhanced from "../components/products/productcomponents/ProductGalleryEnhanced";
+import ProductIconsEnhanced from "../components/products/productcomponents/ProductIconsEnhanced";
+import ProductFeatures from "../components/products/productcomponents/ProductFeatures";
+import ProductDescription from "../components/products/productcomponents/ProductDescription";
+import ProductCTA from "../components/products/productcomponents/ProductCTA";
+import ProductMap from "../components/products/ProductMap";
+import ContactForm from "../components/products/productcomponents/ContactForm";
+import Reviews from "../components/products/productcomponents/Reviews";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { fetchReviews } from "../redux/actions/reviewsActions";
+import ScheduleModal from "../components/products/productcomponents/ScheduleModal";
 
 function ProductPage() {
   const { id } = useParams();
   const product = products.find((p) => p.id === parseInt(id));
-
+  const [isScheduleOpen, setIsScheduleOpen] = useState(false);
   if (!product) return <p>Product not found</p>;
 
   // דוגמה ל־breadcrumbs
@@ -67,15 +38,26 @@ function ProductPage() {
     "Balcony with sea view"
   ];
 
-  // דוגמה ל־reviews
-  const reviewsList = product.reviews || [
-    { user: "Alice", rating: 5, comment: "Great location and modern apartment!" },
-    { user: "Bob", rating: 4, comment: "Spacious rooms, very clean." }
-  ];
+
+const dispatch = useDispatch();
+useEffect(() => {
+  dispatch(fetchReviews(product.id));
+}, [dispatch, product.id]);
+
+
+
 
   const handleContact = () => alert("Contact Agent clicked");
-  const handleSchedule = () => alert("Schedule Visit clicked");
   const handleWhatsapp = () => alert("Whatsapp clicked");
+
+
+ const handleSchedule = () => setIsScheduleOpen(true);
+  const handleCloseSchedule = () => setIsScheduleOpen(false);
+
+  const handleConfirmSchedule = (schedule) => {
+    console.log("Scheduled visit:", schedule);
+    // אפשר פה להוסיף הודעת הצלחה, למשל Toast או Alert
+  };
 
   return (
     <div className="productPageContainer">
@@ -117,7 +99,12 @@ function ProductPage() {
           onSchedule={handleSchedule}
           onWhatsapp={handleWhatsapp}
         />
-
+<ScheduleModal
+  isOpen={isScheduleOpen}
+  onClose={handleCloseSchedule}
+  productId={product.id}
+  onConfirm={handleConfirmSchedule}
+/>
         {/* מפה */}
         <ProductMap address={product.address} />
 
@@ -125,7 +112,7 @@ function ProductPage() {
         <ContactForm />
 
         {/* Reviews */}
-        <Reviews reviews={reviewsList} />
+        <Reviews productId={product.id}  />
       </div>
     </div>
   );

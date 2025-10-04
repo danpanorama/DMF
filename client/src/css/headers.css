@@ -6,12 +6,12 @@
 .heroHeaderH1 {
     font-size: 2rem;
     font-weight: bold;
-    color: #1a1a1a;
+    color: var(--text-color); /* במקום #1a1a1a */
 }
 
 .heroHeaderSubtext {
     font-size: 1rem;
-    color: #555;
+    color: var(--light-text); /* במקום #555 */
     margin-top: 0.5rem;
 }
 
@@ -59,7 +59,7 @@
 
 .answer {
     margin: 0;
-    color: #555;
+    color: var(--light-text); /* במקום #555 */
     line-height: 1.5;
     font-size: 1rem;
     margin-bottom: 10px;

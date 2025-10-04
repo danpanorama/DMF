@@ -28,6 +28,9 @@ body {
   --text-color: #333;
   --light-text: #666;
 
+    --whatsapp-color: #25d366;
+  --whatsapp-hover-color: #1ebe5d;
+
   /* טיפוגרפיה */
   --font-heading: 'Arial Black', sans-serif;
   --font-body: 'Arial', sans-serif;
@@ -96,10 +99,10 @@ button:hover {
   html {
     font-size: 15px;
   }
-  .HomeContainer{
-    width: 60%;
+  /* .HomeContainer{
+    width: 95%;
     margin: 0 auto;
-  }
+  } */
 
   .navbar {
     flex-direction: column;

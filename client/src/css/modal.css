@@ -97,6 +97,7 @@
 .modalBody select,
 .modalBody textarea {
   width: 100%;
+    margin-bottom: 10px;
   padding: 12px 15px;
   border-radius: 10px;
   border: 1px solid #ccc;
@@ -110,6 +111,7 @@
 .modalBody select:focus,
 .modalBody textarea:focus {
   border-color: var(--primary-color);
+
   box-shadow: 0 0 5px rgba(30,144,255,0.3); /* primary-color */
 }
 

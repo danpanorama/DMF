@@ -115,11 +115,11 @@ import { fetchAvailableDates, addSchedule } from "../../../redux/actions/schedul
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../../../css/ScheduleModal.css";
-
+import VerifyModal from "../../common/VerifyModal";
 function ScheduleModal({ isOpen, onClose, productId }) {
   const dispatch = useDispatch();
   const { scheduled = [] } = useSelector(state => state.schedule || {});
-
+const [showVerify, setShowVerify] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
 
@@ -173,17 +173,21 @@ function ScheduleModal({ isOpen, onClose, productId }) {
 
   const handleSubmit = () => {
     if (!selectedDate || !selectedTime) return alert("Please select date and time");
+  setShowVerify(true);
 
+ 
+  };
+
+   const handleVerifySuccess = (contact) => {
     const schedule = {
       productId,
       date: formatDate(selectedDate),
       time: selectedTime,
+      contact,
     };
-
     dispatch(addSchedule(schedule));
-        onClose();
-    setSelectedTime(""); // לאפס השעה שנבחרה
-    // לא צריך לעדכן selectedDate – השעות יתעדכנו אוטומטית
+    setSelectedTime("");
+    onClose();
   };
 
   return (
@@ -231,6 +235,13 @@ function ScheduleModal({ isOpen, onClose, productId }) {
         )}
 
         <GlobalButton label="Confirm" onClick={handleSubmit} variant="primary" />
+     
+       <VerifyModal
+        isOpen={showVerify}
+        onClose={() => setShowVerify(false)}
+        onVerifySuccess={handleVerifySuccess}
+      />
+     
       </div>
     </Modal>
   );

@@ -20,6 +20,7 @@
   height: 100%;
   object-fit: cover; /* מכסה את כל ה-container */
   z-index: -1; /* הרקע מאחורה */
+ filter: brightness(60%);
 }
 
 .heroContent {

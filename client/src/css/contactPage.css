@@ -1,0 +1,101 @@
+.contactPageContainer{
+    width: 90% ;
+    margin: 0 auto;
+}
+
+.contactHero {
+  width: 100%;
+  padding: 60px 20px;
+  color: var(--text-color);
+}
+
+.heroGrid {
+  display: flex;
+  gap: 40px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.heroLeft, .heroRight {
+  flex: 1;
+  min-width: 280px;
+}
+
+.heroLeft h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.heroLeft p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.socialIconsHero {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.socialIconsHero a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.socialIconsHero a:hover {
+  color: var(--accent-color);
+}
+
+/* Right Column */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.infoItem a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.infoItem a:hover {
+  text-decoration: underline;
+}
+
+/* Map */
+.productLocationMap {
+  margin-top: 20px;
+}
+
+.productLocationMap iframe {
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroGrid {
+    flex-direction: column;
+  }
+
+  .heroLeft h1 {
+    font-size: 2rem;
+  }
+}

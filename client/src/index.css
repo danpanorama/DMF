@@ -104,6 +104,7 @@ button:hover {
     margin: 0 auto;
   } */
 
+
   .navbar {
     flex-direction: column;
     align-items: flex-start;
@@ -140,4 +141,82 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================== Desktop & Laptop (min-width: 1024px) ===================== */
+@media screen and (min-width: 1024px) {
+  
+  /* מיכל עמוד דירה */
+  .productPageContainer {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  /* swiper להתאים אוטומטית לגובה */
+  .swiper {
+    height: auto;
+  }
+
+  /* רשימת דירות */
+  /* .plp-product-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+  } */
+
+  /* .plp-product-row {
+    flex-direction: column; 
+    width: calc(33.33% - 1.33rem); 
+    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  } */
+/* 
+  .plp-product-image {
+    width: 100%;
+  }
+
+  .plp-product-main-img {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .plp-product-info {
+    width: 100%;
+    text-align: left;
+  } */
+.productsListContainer{
+  width: 90%;
+  margin: 0 auto;
+}
+  /* פילטרים */
+  .plp-filter-popup {
+    width: 500px; /* לא גדול מדי */
+  }
+
+  .plp-filter-inputs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .plp-filter-inputs input,
+  .plp-filter-inputs select {
+    width: calc(50% - 0.5rem); /* מחצית רוחב כל input */
+  }
+
+  .plp-apply-filters {
+    width: 100%;
+  }
+
 }

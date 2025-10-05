@@ -94,6 +94,6 @@ background-color: #333;
 @media(min-width: 768px){
   .navbar .hamburger,
   .navbar .menu {
-    display: none; /* במחשב לא צריך */
+    display: none; 
   }
 }

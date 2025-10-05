@@ -102,7 +102,12 @@
   width: 95%;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
+/* .swiper-button-prev{
+    display: none;
+}
+.swiper-button-next{
+    display: none;
+} */
 .pp-contact-form input,
 .pp-contact-form textarea {
   padding: 12px 15px;

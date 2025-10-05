@@ -107,6 +107,7 @@
   height: 100%;
   object-fit: cover; /* מכסה את כל ה-container */
 
+ 
 }
 
 /* ===================== RESPONSIVE ===================== */
@@ -119,5 +120,176 @@
 
   .aboutImage img {
     max-width: 100%;
+  }
+}
+
+
+
+/* Hero Video */
+.aboutHero {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.aboutHeroVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+    outline: 1px solid white;
+  outline-offset: -5px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+filter: brightness(50%);
+}
+
+.aboutHeroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.aboutHeroOverlay h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: 100;
+}
+
+.aboutHeroOverlay p {
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* תוכן About */
+.aboutContent {
+  padding: 60px 0;
+  gap: 50px;
+}
+
+.aboutText h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.aboutText p {
+  font-size: 1.1rem;
+  color: var(--light-text);
+  margin-bottom: 1rem;
+}
+
+/* סטטיסטיקות */
+.aboutStats {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.statCard {
+  background: var(--secondary-color);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  min-width: 120px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+}
+
+.statCard h3 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--text-color);
+}
+
+.statCard p {
+  margin-top: 5px;
+  color: var(--light-text);
+}
+
+/* CTA */
+.aboutCTA {
+  padding: 80px 20px;
+  background: var(--secondary-color);
+  text-align: center;
+}
+
+.ctaContent h2 {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 30px;
+  font-family: var(--font-heading);
+}
+
+.ctaButtonGradient {
+  display: inline-block;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: all 0.4s ease;
+  text-decoration: none;
+}
+
+.ctaButtonGradient:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .aboutHeroOverlay h1 {
+    font-size: 2.2rem;
+  }
+
+  .aboutHeroOverlay p {
+    font-size: 1rem;
+  }
+
+  .aboutContent {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .aboutStats {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutHeroOverlay h1 {
+    font-size: 1.8rem;
+  }
+
+  .aboutHeroOverlay p {
+    font-size: 0.9rem;
+  }
+
+  .ctaButton {
+    padding: 10px 20px;
   }
 }

@@ -62,7 +62,7 @@ useEffect(() => {
   return (
     <div className="productPageContainer">
 
-
+<div className="spaceNav"></div>
       {/* גלריה */}
       <ProductGalleryEnhanced images={product.images} name={product.name} />
       {/* Breadcrumbs */}

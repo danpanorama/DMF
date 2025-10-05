@@ -62,7 +62,10 @@ function Navbar() {
     <>
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <div className="container">
-        DMF
+          <p className="logo">
+             DMF
+          </p>
+       
           <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
             <div></div>
             <div></div>

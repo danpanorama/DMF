@@ -1,0 +1,203 @@
+/* ==================== ProductsListPage ==================== */
+.plp-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.plp-filter {
+  margin-bottom: 1.5rem;
+}
+
+/* רשימת דירות */
+.plp-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* דירה אחת */
+.plp-product-row {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  gap: 1rem;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: box-shadow 0.2s;
+  background-color: #fff;
+}
+
+.plp-product-row:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* תמונות */
+.plp-product-image {
+  width: 250px;
+}
+
+.plp-product-main-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.plp-product-thumbs img {
+  width: 100%;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.plp-product-thumbs .swiper-slide-thumb-active img {
+  opacity: 1;
+  border: 2px solid var(--text-color);
+}
+
+/* מידע על הדירה */
+.plp-product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plp-product-info h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+}
+
+.plp-product-info p {
+  margin: 0 0 0.5rem 0;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* רספונסיביות */
+@media (max-width: 900px) {
+  .plp-product-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plp-product-image {
+    width: 100%;
+  }
+
+  .plp-product-main-img {
+    height: 200px;
+  }
+
+  .plp-product-info {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+
+/* ==================== ProductsListPage Filter Popup ==================== */
+.plp-filter-button {
+  padding: 10px 20px;
+  background-color: var(--text-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.plp-filter-button:hover {
+  background-color: #333;
+}
+
+.plp-filter-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 999;
+}
+
+.plp-filter-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 1000;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  animation: plp-popup-show 0.3s ease;
+}
+
+@keyframes plp-popup-show {
+  from { opacity: 0; transform: translate(-50%, -60%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.plp-filter-popup h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.plp-filter-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+.plp-filter-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.plp-filter-inputs input,
+.plp-filter-inputs select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+}
+
+.plp-filter-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.plp-apply-filters {
+  margin-top: 1rem;
+  padding: 12px 20px;
+  background-color: var(--text-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.plp-apply-filters:hover {
+  background-color: #333;
+}

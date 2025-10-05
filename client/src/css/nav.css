@@ -6,11 +6,13 @@
   width: 100%;
   padding: var(--spacing-md) 0;
   z-index: 1000;
- 
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  background-color: transparent; /* התחלה שקופה */
+  background-color: #262626; /* התחלה שקופה */
 }
 
+.spaceNav{
+  height: 55px;
+}
 /* Inner container שמרכז את התוכן ומעניק רווח מהקצוות */
 .navbar .container {
   width: 90%;
@@ -31,10 +33,15 @@ background-color: #333;
 }
 /* הלוגו */
 .navbar .logo {
-  font-weight: bold;
-  font-size: 1.5rem;
+  font-weight: 100;
+  font-size: 1rem;
+  margin: 0;
+  color: white;
 }
-
+.navbar.scrolled .logo {
+  
+  color: black;
+}
 /* האמבורגר */
 .navbar .hamburger {
   display: flex;

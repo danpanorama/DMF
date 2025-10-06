@@ -20,15 +20,16 @@
 }
 
 .react-calendar__tile--now {
-  background: #007bff;
+  background: #00ff22 !important;
   color: white;
-  border-radius: 50%;
+  
+  
 }
 
 .react-calendar__tile--active {
   background: #28a745;
   color: white;
-  border-radius: 50%;
+  
 }
 
 .react-calendar__tile--available {

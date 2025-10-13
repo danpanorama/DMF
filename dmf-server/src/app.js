@@ -11,7 +11,8 @@ import compression from 'compression';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import meetingRoutes from './routes/meetingRoutes.js';
-
+import propertyRoutes from './routes/propertyRoutes.js';
+import reviewRoutes from "./routes/reviewRoutes.js";
 import notFound from './middlewares/notFound.js';
 import errorHandler from './middlewares/errorHandler.js';
 
@@ -40,7 +41,11 @@ const apiLimiter = rateLimit({
 });
 app.use('/api', apiLimiter);
 
+
+
 // Routes
+app.use('/api/properties', propertyRoutes);
+app.use("/api/reviews", reviewRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/meetings', meetingRoutes);

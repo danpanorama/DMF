@@ -178,17 +178,18 @@ const [showVerify, setShowVerify] = useState(false);
  
   };
 
-   const handleVerifySuccess = (contact) => {
-    const schedule = {
-      productId,
-      date: formatDate(selectedDate),
-      time: selectedTime,
-      contact,
-    };
-    dispatch(addSchedule(schedule));
-    setSelectedTime("");
-    onClose();
+ const handleVerifySuccess = (contact) => {
+  const schedule = {
+    productId,
+    date: formatDate(selectedDate),
+    time: selectedTime,
+    contact // { name, email, phone }
   };
+  dispatch(addSchedule(schedule));
+  setSelectedTime("");
+  onClose();
+};
+
 
   return (
     <Modal title="Schedule a Visit" isOpen={isOpen} onClose={onClose}>

@@ -22,6 +22,9 @@ function VerifyModal({ isOpen, onClose, onVerifySuccess }) {
       setStep("success");
       setTimeout(() => {
         onVerifySuccess(contact);
+        // VerifyModal.jsx
+// onVerifySuccess({ name, email, phone });
+
         onClose();
         setStep("input");
         setContact("");

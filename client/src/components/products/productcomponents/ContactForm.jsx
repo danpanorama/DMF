@@ -30,15 +30,27 @@
 
 
 import "../../../css/productPage.css";
+import { setError } from "../../../redux/actions/errorActions";
 import useFormHandler from "../../common/FormHandler";
+import { useDispatch, useSelector } from "react-redux";
 
 function ContactForm() {
+  const dispatch = useDispatch()
   const { values, handleChange, handleSubmit, loading, FeedbackComponent } = useFormHandler({
     initialValues: { name: "", email: "", phone: "", message: "" },
-    onSubmit: async (data) => {
-      console.log("Send to server:", data);
-      await new Promise((res) => setTimeout(res, 500)); // simulate server
-    },
+ onSubmit: async (data) => {
+        try {
+          dispatch(clearError());
+          const res = await axios.post("/api/contact", data);
+          console.log("Message sent:", res.data.message);
+        } catch (err) {
+          const msg =
+            err.response?.data?.message || "Failed to send your message.";
+          dispatch(setError("Contact Error", msg));
+          throw new Error(msg); // כדי ש־FormHandler יציג feedback
+        }
+      }, 
+
   });
 
   return (

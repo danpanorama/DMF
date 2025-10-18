@@ -6,10 +6,12 @@ import { meetingSchema } from '../validators/meetingValidator.js';
 
 const router = express.Router();
 
-router.use(protect); // כל הרוטים תחת /meetings דורשים auth
+// router.use(protect); // כל הרוטים תחת /meetings דורשים auth
 
 router.post('/', validate(meetingSchema), createMeeting);
-router.get('/', getMyMeetings);
-router.patch('/:id/cancel', cancelMeeting);
+
+
+router.get('/',protect, getMyMeetings);
+router.patch('/:id/cancel',protect, cancelMeeting);
 
 export default router;

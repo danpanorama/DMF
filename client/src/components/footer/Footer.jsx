@@ -1,15 +1,16 @@
-// import { useState } from "react";
+
+
 // import "../../css/footer.css";
+// import useFormHandler from "../common/FormHandler";
 
 // function Footer() {
-//   const [form, setForm] = useState({ name: "", email: "", message: "" });
-
-//   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     alert("Message sent!");
-//     setForm({ name: "", email: "", message: "" });
-//   };
+//   const { values, handleChange, handleSubmit, loading, FeedbackComponent } = useFormHandler({
+//     initialValues: { name: "", email: "", message: "" },
+//     onSubmit: async (data) => {
+//       console.log("Send to server:", data);
+//       await new Promise((res) => setTimeout(res, 500)); // סימולציה של שליחה לשרת
+//     },
+//   });
 
 //   return (
 //     <footer className="footerContainer">
@@ -35,7 +36,7 @@
 //             type="text" 
 //             name="name" 
 //             placeholder="Your Name" 
-//             value={form.name} 
+//             value={values.name} 
 //             onChange={handleChange} 
 //             required 
 //           />
@@ -43,18 +44,21 @@
 //             type="email" 
 //             name="email" 
 //             placeholder="Your Email" 
-//             value={form.email} 
+//             value={values.email} 
 //             onChange={handleChange} 
 //             required 
 //           />
 //           <textarea 
 //             name="message" 
 //             placeholder="Your Message" 
-//             value={form.message} 
+//             value={values.message} 
 //             onChange={handleChange} 
 //             required 
 //           />
-//           <button type="submit">Send</button>
+//           <button type="submit" disabled={loading}>
+//             {loading ? "Sending..." : "Send"}
+//           </button>
+//           {FeedbackComponent}
 //         </form>
 //       </div>
 
@@ -80,15 +84,28 @@
 
 
 
+
 import "../../css/footer.css";
 import useFormHandler from "../common/FormHandler";
+import { useDispatch } from "react-redux";
+import { setError, clearError } from "../../redux/actions/errorActions";
+import axios from "axios";
 
 function Footer() {
+  const dispatch = useDispatch();
+
   const { values, handleChange, handleSubmit, loading, FeedbackComponent } = useFormHandler({
-    initialValues: { name: "", email: "", message: "" },
+    initialValues: { name: "", email: "", phone: "", message: "" }, // הוספנו phone כמו בטופס הראשי
     onSubmit: async (data) => {
-      console.log("Send to server:", data);
-      await new Promise((res) => setTimeout(res, 500)); // סימולציה של שליחה לשרת
+      try {
+        dispatch(clearError());
+        const res = await axios.post("/api/contact", data);
+        console.log("Message sent:", res.data.message);
+      } catch (err) {
+        const msg = err.response?.data?.message || "Failed to send your message.";
+        dispatch(setError("Contact Error", msg));
+        throw new Error(msg); // כדי ש־FormHandler יציג feedback
+      }
     },
   });
 
@@ -127,6 +144,13 @@ function Footer() {
             value={values.email} 
             onChange={handleChange} 
             required 
+          />
+          <input 
+            type="text"
+            name="phone"
+            placeholder="Your Phone"
+            value={values.phone}
+            onChange={handleChange}
           />
           <textarea 
             name="message" 

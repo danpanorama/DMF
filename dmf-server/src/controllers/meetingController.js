@@ -57,20 +57,25 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import Meeting from "../models/Meeting.js";
 import Contact from "../models/Contact.js";
 import { sendMail } from "../utils/email.js";
+import { findOrCreateContact } from "../utils/userUtils.js";
 
 export const createMeeting = asyncHandler(async (req, res) => {
   const { productId, date, time, contact } = req.body;
-
+console.log( req.body)
   let userId = req.user ? req.user._id : null;
   let contactDoc = null;
 
   // אם אין משתמש מחובר - נשמור את פרטי הקשר
   if (!userId && contact) {
-    contactDoc = await Contact.create({
-      name: contact.name || "",
-      email: contact.email || "",
-      phone: contact.phone || ""
-    });
+    // contactDoc = await Contact.create({
+    //   name: contact.name || "",
+    //   email: contact.email || "",
+    //   phone: contact.phone || ""
+    // });
+
+
+        contactDoc = await findOrCreateContact(contact);
+
   }
 
   // לבדוק כפילויות באותו תאריך/שעה

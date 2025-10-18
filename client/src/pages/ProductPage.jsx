@@ -47,9 +47,17 @@ useEffect(() => {
 
 
 
-  const handleContact = () => alert("Contact Agent clicked");
-  const handleWhatsapp = () => alert("Whatsapp clicked");
-
+  const handleContact = () => {
+  const phoneNumber = "+972534273529"; // המספר שלך
+  window.open(`https://wa.me/${phoneNumber}`, "_blank");
+};
+    
+    
+  
+  const handleWhatsapp = () => {
+  const phoneNumber = "+972534273529"; // המספר שלך
+  window.open(`https://wa.me/${phoneNumber}`, "_blank");
+};
 
  const handleSchedule = () => setIsScheduleOpen(true);
   const handleCloseSchedule = () => setIsScheduleOpen(false);

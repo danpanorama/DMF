@@ -13,7 +13,7 @@ const MAX_SIZE = 300;
 const MIN_PRICE = 50000;
 const MAX_PRICE = 2000000;
 
-const MIN_FLOOR = 0;
+const MIN_FLOOR = -1;
 const MAX_FLOOR = 20;
 
 const MIN_DISTANCE = 0;

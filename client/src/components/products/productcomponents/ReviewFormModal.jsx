@@ -61,7 +61,10 @@ function ReviewFormModal({ isOpen, onClose, productId }) {
   const dispatch = useDispatch();
 
   const { values, handleChange, handleSubmit, FeedbackComponent } = useFormHandler({
-    initialValues: { user: "", rating: "", comment: "" },
+initialValues: { name: "", email: "", rating: "", comment: "" }
+,
+   
+   
     onSubmit: async (formValues) => {
       await dispatch(addReview({ ...formValues, productId }));
       onClose();
@@ -73,11 +76,18 @@ function ReviewFormModal({ isOpen, onClose, productId }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="user"
+          name="name"
           placeholder="Your name"
-          value={values.user}
+          value={values.name}
           onChange={handleChange}
         />
+        <input
+  type="email"
+  name="email"
+  placeholder="Your Email"
+  value={values.email}
+  onChange={handleChange}
+/>
         <select name="rating" value={values.rating} onChange={handleChange}>
           <option value="">Rating</option>
           {[5, 4, 3, 2, 1].map((r) => (

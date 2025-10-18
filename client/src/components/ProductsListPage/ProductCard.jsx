@@ -11,7 +11,7 @@ import "swiper/css/thumbs";
 function ProductCard({ product }) {
   const navigate = useNavigate();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const { images, name, description, rooms, bathrooms, floor, size, balcony, parking, elevator, condition, id } = product;
+  const { images, name, description, rooms, bathrooms, floor, size, balcony, parking, elevator, condition, id,price } = product;
 
   return (
     <div
@@ -28,7 +28,7 @@ function ProductCard({ product }) {
               thumbs={{ swiper: thumbsSwiper }}
               spaceBetween={10}
               slidesPerView={1}
-              className="plp-product-main-carousel"
+              className="plp-product-main-carousel swiperLine"
             >
               {images.map((img, idx) => (
                 <SwiperSlide key={idx}>
@@ -69,6 +69,7 @@ function ProductCard({ product }) {
           elevator={elevator}
           condition={condition}
         />
+        <h1 className="apartmentPrice">  {price}€</h1>
       </div>
     </div>
   );

@@ -151,7 +151,12 @@ button:hover {
 
 
 
+@media screen and (max-width: 1104px) {
+   .swiperLine {
+    height: auto;
+  }
 
+}
 
 
 /* ===================== Desktop & Laptop (min-width: 1024px) ===================== */
@@ -162,11 +167,11 @@ button:hover {
     width: 70%;
     margin: 0 auto;
   }
-
-  /* swiper להתאים אוטומטית לגובה */
-  .swiper {
+   /* .swiper {
     height: auto;
-  }
+  } */
+  /* swiper להתאים אוטומטית לגובה */
+
 
   /* רשימת דירות */
   /* .plp-product-list {
@@ -196,9 +201,12 @@ button:hover {
     text-align: left;
   } */
 .productsListContainer{
-  width: 90%;
+  width: 60%;
   margin: 0 auto;
 }
+  /* .swiper {
+    height: auto;
+  } */
   /* פילטרים */
   .plp-filter-popup {
     width: 500px; /* לא גדול מדי */

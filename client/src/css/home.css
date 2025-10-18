@@ -42,7 +42,7 @@
 
 /* ברירת מחדל למסכים גדולים */
 .HomeContainer {
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
   transform: translateY(-30px);
 }
@@ -52,4 +52,8 @@
   .HomeContainer {
     width: 95%;
   }
+
+  /* .imageSectionProduct{
+    height: 400px !important;
+  } */
 }

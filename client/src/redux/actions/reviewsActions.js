@@ -121,14 +121,34 @@ import { setError } from "./errorActions";
 import { showLoader, hideLoader } from "./loaderActions";
 import api from "../../config/axiosConfig";
 
+// // 🟢 שליפה לפי productId
+// export const fetchReviews = (productId) => async (dispatch) => {
+//   try {
+//     dispatch(showLoader());
+//     dispatch({ type: REVIEWS_FETCH_REQUEST });
+
+//     const { data } = await api.get(`/reviews/product/${productId}`);
+//     dispatch({ type: REVIEWS_FETCH_SUCCESS, payload: data });
+//   } catch (error) {
+//     dispatch({ type: REVIEWS_FETCH_FAIL, payload: error.message });
+//     dispatch(setError("Error Loading Reviews", error.message));
+//   } finally {
+//     dispatch(hideLoader());
+//   }
+// };
+
+
+
+
+
 // 🟢 שליפה לפי productId
-export const fetchReviews = (productId) => async (dispatch) => {
+export const fetchWithPropertyReviews = (Reviews) => async (dispatch) => {
   try {
     dispatch(showLoader());
+    console.log(Reviews)
     dispatch({ type: REVIEWS_FETCH_REQUEST });
 
-    const { data } = await api.get(`/reviews/product/${productId}`);
-    dispatch({ type: REVIEWS_FETCH_SUCCESS, payload: data });
+    dispatch({ type: REVIEWS_FETCH_SUCCESS, payload: Reviews });
   } catch (error) {
     dispatch({ type: REVIEWS_FETCH_FAIL, payload: error.message });
     dispatch(setError("Error Loading Reviews", error.message));
@@ -137,14 +157,26 @@ export const fetchReviews = (productId) => async (dispatch) => {
   }
 };
 
+
+
+
+
+
+
+
+import { getDeviceId } from "../../components/utils/device";
+
+
 // 🟢 הוספת תגובה
 export const addReview = (review) => async (dispatch) => {
   try {
     dispatch(showLoader());
     dispatch({ type: REVIEW_ADD_REQUEST });
-
-    const { data } = await api.post("/reviews", review);
-    dispatch({ type: REVIEW_ADD_SUCCESS, payload: data });
+const deviceId = getDeviceId();
+    const { data } = await api.post("/reviews", { ...review, deviceId });
+    console.log(data)
+    dispatch({ type: REVIEW_ADD_SUCCESS, payload: data.review
+ });
   } catch (error) {
     dispatch({ type: REVIEW_ADD_FAIL, payload: error.message });
     dispatch(setError("Error Adding Review", error.message));
@@ -154,12 +186,29 @@ export const addReview = (review) => async (dispatch) => {
 };
 
 // 🟢 מחיקת תגובה
-export const deleteReview = (reviewId) => async (dispatch) => {
+// export const deleteReview = (reviewId) => async (dispatch) => {
+//   try {
+//     dispatch(showLoader());
+//     dispatch({ type: REVIEW_DELETE_REQUEST });
+
+//     await api.delete(`/reviews/${reviewId}`);
+//     dispatch({ type: REVIEW_DELETE_SUCCESS, payload: reviewId });
+//   } catch (error) {
+//     dispatch({ type: REVIEW_DELETE_FAIL, payload: error.message });
+//     dispatch(setError("Error Deleting Review", error.message));
+//   } finally {
+//     dispatch(hideLoader());
+//   }
+// };
+
+
+export const deleteReview = (reviewId, deviceId) => async (dispatch) => {
   try {
     dispatch(showLoader());
     dispatch({ type: REVIEW_DELETE_REQUEST });
 
-    await api.delete(`/reviews/${reviewId}`);
+    await api.delete(`/reviews/${reviewId}`, { data: { deviceId } });
+
     dispatch({ type: REVIEW_DELETE_SUCCESS, payload: reviewId });
   } catch (error) {
     dispatch({ type: REVIEW_DELETE_FAIL, payload: error.message });

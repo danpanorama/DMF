@@ -11,12 +11,12 @@ import "swiper/css/thumbs";
 function ProductCard({ product }) {
   const navigate = useNavigate();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const { images, name, description, rooms, bathrooms, floor, size, balcony, parking, elevator, condition, id,price } = product;
+  const { images, name, description, rooms, bathrooms, floor, size, balcony, parking, elevator, condition, _id,price } = product;
 
   return (
     <div
       className="plp-product-row"
-      onClick={() => navigate(`/product/${id}`)}
+      onClick={() => navigate(`/product/${_id}`)}
     >
       <div className="plp-product-image">
         {images.length > 1 ? (

@@ -66,7 +66,8 @@ initialValues: { name: "", email: "", rating: "", comment: "" }
    
    
     onSubmit: async (formValues) => {
-      await dispatch(addReview({ ...formValues, productId }));
+  
+       dispatch(addReview({ ...formValues, productId }));
       onClose();
     },
   });

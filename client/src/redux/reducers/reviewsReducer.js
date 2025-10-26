@@ -36,7 +36,7 @@ export const reviewsReducer = (state = initialState, action) => {
       return { 
         ...state, 
         loading: false, 
-        reviews: state.reviews.filter(r => r.id !== action.payload) 
+        reviews: state.reviews.filter(r => r._id !== action.payload) 
       };
 
     case REVIEWS_FETCH_FAIL:

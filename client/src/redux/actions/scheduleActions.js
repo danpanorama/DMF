@@ -51,17 +51,55 @@
 
 
 
-// src/redux/actions/scheduleActions.js
+// // src/redux/actions/scheduleActions.js
+// import api from "../../config/axiosConfig";
+// import { SCHEDULE_FETCH_SUCCESS, SCHEDULE_ADD_SUCCESS } from "../constants/scheduleConstants";
+// import { showLoader, hideLoader } from "./loaderActions";
+// import { setError } from "./errorActions";
+
+// // שליפה (נשאיר דמו בינתיים)
+// export const fetchAvailableDates = () => async (dispatch) => {
+//   try {
+//     dispatch(showLoader());
+//     const { data } = await api.get("/meetings"); // אם יש רוט של GET
+//     dispatch({ type: SCHEDULE_FETCH_SUCCESS, payload: data.data });
+//   } catch (error) {
+//     dispatch(setError("Failed to fetch dates", error.message));
+//   } finally {
+//     dispatch(hideLoader());
+//   }
+// };
+
+// // שליחת פגישה לשרת
+// export const addSchedule = (schedule) => async (dispatch) => {
+//   try {
+//     dispatch(showLoader());
+
+//     // קריאה אמיתית לשרת
+//     const { data } = await api.post("/meetings", schedule);
+
+//     // הצלחה
+//     dispatch({ type: SCHEDULE_ADD_SUCCESS, payload: data.data });
+//   } catch (error) {
+//     dispatch(setError("Failed to schedule visit", error.message));
+//   } finally {
+//     dispatch(hideLoader());
+//   }
+// };
+
+
+
 import api from "../../config/axiosConfig";
 import { SCHEDULE_FETCH_SUCCESS, SCHEDULE_ADD_SUCCESS } from "../constants/scheduleConstants";
 import { showLoader, hideLoader } from "./loaderActions";
 import { setError } from "./errorActions";
 
-// שליפה (נשאיר דמו בינתיים)
+// שליפת כל הפגישות
 export const fetchAvailableDates = () => async (dispatch) => {
   try {
     dispatch(showLoader());
-    const { data } = await api.get("/meetings"); // אם יש רוט של GET
+    const { data } = await api.get("/meetings/available"); // מקבל את הפגישות של המשתמש
+    // data.data = מערך של פגישות { date, time, ... }
     dispatch({ type: SCHEDULE_FETCH_SUCCESS, payload: data.data });
   } catch (error) {
     dispatch(setError("Failed to fetch dates", error.message));
@@ -70,15 +108,11 @@ export const fetchAvailableDates = () => async (dispatch) => {
   }
 };
 
-// שליחת פגישה לשרת
+// שליחת פגישה חדשה
 export const addSchedule = (schedule) => async (dispatch) => {
   try {
     dispatch(showLoader());
-
-    // קריאה אמיתית לשרת
     const { data } = await api.post("/meetings", schedule);
-
-    // הצלחה
     dispatch({ type: SCHEDULE_ADD_SUCCESS, payload: data.data });
   } catch (error) {
     dispatch(setError("Failed to schedule visit", error.message));

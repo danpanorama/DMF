@@ -41,12 +41,12 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
-function Product({ id, images, name, description, location }) {
+function Product({ _id, images, name, description, location }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
     // שולח לדף מוצר עם id כפרמטר
-    navigate(`/product/${id}`);
+    navigate(`/product/${_id}`);
   };
 
   return (

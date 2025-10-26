@@ -77,8 +77,12 @@ import { products as productsData } from "../database/productData";
 import ProductCard from "../components/ProductsListPage/ProductCard";
 import ProductFilterPanel from "../components/ProductsListPage/ProductFilterPanel";
 import "../css/productsListPage.css";
-
+import { showLoader,hideLoader} from "../redux/actions/loaderActions";
+import {useDispatch} from 'react-redux'
+import { setError } from "../redux/actions/errorActions";
+import api from "../config/axiosConfig";
 function ProductsListPage() {
+  const dispatch = useDispatch()
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({
     location: "",
@@ -89,9 +93,35 @@ function ProductsListPage() {
     floor: ""
   });
 
+
+
+  // useEffect(() => {
+  //   setProducts(productsData);
+  // }, []);
+
+
+
+
   useEffect(() => {
-    setProducts(productsData);
-  }, []);
+    const fetchProperties = async () => {
+      dispatch(showLoader());
+
+      try {
+        const { data } = await api.get("/properties");
+       
+       console.log(data)
+        setProducts(data.data);
+      } catch (error) {
+        // שימוש ב־Redux לטיפול בשגיאה
+        dispatch(setError("Fetch Properties Failed", error.message));
+      }
+       finally {
+      dispatch(hideLoader());
+    }
+    };
+
+    fetchProperties();
+  }, [dispatch]);
 
   const filteredProducts = products.filter((p) => {
     return (

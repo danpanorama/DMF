@@ -1,8 +1,10 @@
+
+
 import { SCHEDULE_FETCH_SUCCESS, SCHEDULE_ADD_SUCCESS } from "../constants/scheduleConstants";
 
 const initialState = {
-  availableDates: [],
-  scheduled: [],
+  availableDates: [], // כל הפגישות מהשרת
+  scheduled: [],      // הפגישות שהמשתמש קבע עכשיו
 };
 
 export const scheduleReducer = (state = initialState, action) => {

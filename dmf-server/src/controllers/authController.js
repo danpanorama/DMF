@@ -1,5 +1,5 @@
 import asyncHandler from '../middlewares/asyncHandler.js';
-import User from '../models/User.js';
+import User from '../models/Contact.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import logger from '../utils/logger.js';

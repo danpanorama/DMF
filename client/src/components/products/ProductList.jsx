@@ -1,53 +1,39 @@
-// import { useState } from "react";
-// import Product from "./Product";
-// import '../../css/product.css'
-// import Image1 from '../../assets/houseDemo.jpg'
-// import {products} from '../../database/productData'
-// function ProductList() {
-//   // מערך דירות לדוגמה
 
 
-//   // state לקבוע כמה מוצגים
-//   const [visibleCount, setVisibleCount] = useState(2);
-
-//   const handleShowMore = () => {
-//     setVisibleCount((prev) => prev + 2); // מוסיף עוד שניים בכל לחיצה
-//   };
-
-//   return (
-//     <div className="productListContainer">
-//    <div className="productGrid">
-//        {products.slice(0, visibleCount).map((product) => (
-//         <Product key={product.id} {...product} />
-//       ))}
-//    </div>
-
-//       {visibleCount < products.length && (
-//         <button onClick={handleShowMore} className="showMoreBtn">
-//          show more 
-//         </button>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default ProductList;
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Product from "./Product";
-import '../../css/product.css'
-import { products } from '../../database/productData'
+import '../../css/product.css';
+import api from '../../config/axiosConfig';
+import { showLoader,hideLoader} from "../../redux/actions/loaderActions";
 
+import { useDispatch, useSelector } from "react-redux";
 function ProductList() {
+  const [products, setProducts] = useState([]);
   const [visibleCount, setVisibleCount] = useState(2);
+ const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchProducts = async () => {
+     
+          dispatch(showLoader())
+      try {
+        const { data } = await api.get("/properties"); // מושך את כל הדירות
+       console.log(data)
+       
+        setProducts(data.data);
+      } catch (error) {
+        console.error("Failed to fetch products:", error.message);
+      }
+       finally {
+      dispatch(hideLoader());
+    }
+    };
+    fetchProducts();
+  }, []);
 
   const handleShowMore = () => {
-    // אם עדיין לא הגענו לסוף -> להוסיף עוד
     if (visibleCount < products.length) {
       setVisibleCount((prev) => prev + 2);
-    } 
-    // אם כבר הגענו לסוף -> לאפס חזרה להתחלה (2)
-    else {
+    } else {
       setVisibleCount(2);
     }
   };
@@ -56,7 +42,7 @@ function ProductList() {
     <div className="productListContainer">
       <div className="productGrid">
         {products.slice(0, visibleCount).map((product) => (
-          <Product key={product.id} {...product} />
+          <Product key={product._id} {...product} />
         ))}
       </div>
 

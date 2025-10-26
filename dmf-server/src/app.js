@@ -50,11 +50,14 @@ app.use(hpp());
 app.use(compression());
 
 // CORS
-
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  origin: [
+    process.env.CLIENT_URL || "http://localhost:5173",
+    "https://jovial-klepon-3531da.netlify.app"
+  ],
   credentials: true
 }));
+
 
 // Logger
 if (process.env.NODE_ENV !== 'production') app.use(morgan('dev'));

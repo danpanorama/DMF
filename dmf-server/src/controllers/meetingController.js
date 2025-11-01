@@ -151,11 +151,18 @@ export const createMeeting = asyncHandler(async (req, res) => {
     return res.status(400).json({ status: "fail", message: "Contact email required" });
   }
 
+  // contact.email = contact.email.toLowerCase();
+  // const meetingDateTime = new Date(`${date}T${time}:00Z`);
+  // if (isNaN(meetingDateTime.getTime())) {
+  //   return res.status(400).json({ status: "fail", message: "Invalid date or time" });
+  // }
+
   contact.email = contact.email.toLowerCase();
-  const meetingDateTime = new Date(`${date}T${time}:00Z`);
-  if (isNaN(meetingDateTime.getTime())) {
-    return res.status(400).json({ status: "fail", message: "Invalid date or time" });
-  }
+const meetingDateTime = new Date(`${date}T${time}:00Z`);
+if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
+  return res.status(400).json({ status: "fail", message: "Invalid date or time" });
+}
+
   if (meetingDateTime < new Date()) {
     return res.status(400).json({ status: "fail", message: "Cannot schedule a meeting in the past" });
   }

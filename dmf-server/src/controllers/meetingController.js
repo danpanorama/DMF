@@ -7,164 +7,38 @@ import { findOrCreateContact } from "../utils/userUtils.js";
 
 
 
-// export const createMeeting = asyncHandler(async (req, res) => {
-//   const { productId, date, time, contact, reschedule = false } = req.body;
-
-//   if (!contact || !contact.email) {
-//     return res.status(400).json({ status: "fail", message: "Contact email required" });
-//   }
-//   console.log(req.body)
-//   contact.email = contact.email.toLowerCase();
-
-//   const meetingDateTime = new Date(`${date}T${time}:00Z`);
-// if (meetingDateTime < new Date()) {
-//   return res.status(400).json({ status: "fail", message: "Cannot schedule a meeting in the past" });
-// }
-
-
-//   // const existingMeeting = await Meeting.findOne({ status: { $ne: "cancelled" } })
-//  // בודק אם יש פגישה קיימת עם אותו אימייל ואותו נכס (לא משנה שעה)
-// const existingMeeting = await Meeting.findOne({
-//   email: contact.email,
-//   productId,
-//   status: { $ne: "cancelled" }
-// });
-
-
-
-
-
-//   let contactDoc = await findOrCreateContact(contact);
-//   let userId = req.user ? req.user._id : null;
-
-//   if (existingMeeting && !reschedule) {
-//     // כפילות – מחזירים ללקוח פרטים על הפגישה הקיימת
-//     return res.status(409).json({
-//       status: "fail",
-//       message: "You already have a meeting",
-//       existingMeeting: {
-//         _id: existingMeeting._id,
-//         date: existingMeeting.date,
-//         time: existingMeeting.time,
-//         productId: existingMeeting.productId
-//       }
-//     });
-//   }
-
-//   // אם זו החלפה – מסמנים את הישנה כ-cancelled
-//   if (existingMeeting && reschedule) {
-//    await Meeting.deleteOne({ _id: existingMeeting._id });
-
-
-//     // שולחים מייל ללקוח על הפגישה החדשה ולחברה על הביטול והפגישה החדשה
-//     const mails = [
-//       sendMail({
-//         to: contact.email,
-//         subject: "🗓️ Your meeting has been rescheduled",
-//         html: `
-//           <p>Your previous meeting on <strong>${existingMeeting.date}</strong> at <strong>${existingMeeting.time}</strong> has been replaced.</p>
-//           <p>New meeting: <strong>${date}</strong> at <strong>${time}</strong>.</p>
-//         `
-//       }),
-//       sendMail({
-//         to: process.env.COMPANY_EMAIL,
-//         subject: "🗓️ Meeting Rescheduled",
-//         html: `
-//           <p>Meeting for <strong>${contact.name}</strong> has been updated.</p>
-//           <p>Previous: ${existingMeeting.date} at ${existingMeeting.time} (cancelled)</p>
-//           <p>New: ${date} at ${time}</p>
-//         `
-//       })
-//     ];
-
-//     try {
-//       await Promise.all(mails);
-//     } catch (err) {
-//       console.error("Failed to send some emails", err);
-//     }
-//   }
-
-//   // יוצרים את הפגישה החדשה
-//   const meeting = await Meeting.create({
-//     user: userId,
-//     contact: contactDoc._id,
-//     productId,
-//     date,
-//     time,
-//     email:contact.email
-//   });
-
-//   // אם זו לא החלפה – שולחים מיילים רגילים
-//   if (!existingMeeting || !reschedule) {
-//     const mails = [
-//       sendMail({
-//         to: process.env.COMPANY_EMAIL,
-//         subject: "🗓️ New Meeting Scheduled",
-//         html: `
-//           <h3>New meeting scheduled</h3>
-//           <p><strong>Date:</strong> ${date}</p>
-//           <p><strong>Time:</strong> ${time}</p>
-//           <p><strong>Property:</strong> ${productId || "N/A"}</p>
-//           <p><strong>Client:</strong> ${contact.name || "-"}<br/>
-//              <strong>Email:</strong> ${contact.email || "-"}<br/>
-//              <strong>Phone:</strong> ${contact.phone || "-"}</p>
-//         `
-//       })
-//     ];
-
-//     if (contact.email) {
-//       mails.push(
-//         sendMail({
-//           to: contact.email,
-//           subject: `🗓️ Your Meeting is Scheduled`,
-//           html: `
-//             <h3>Your meeting is scheduled</h3>
-//             <p><strong>Date:</strong> ${date}</p>
-//             <p><strong>Time:</strong> ${time}</p>
-//             <p><strong>Property:</strong> ${productId || "N/A"}</p>
-//             <p>We look forward to seeing you!</p>
-//           `
-//         })
-//       );
-//     }
-
-//     try {
-//       await Promise.all(mails);
-//     } catch (err) {
-//       console.error("Failed to send some emails", err);
-//     }
-//   }
-
-//   res.status(201).json({ status: "success", data: meeting });
-// });
-
-
 export const createMeeting = asyncHandler(async (req, res) => {
   const { productId, date, time, contact, reschedule = false } = req.body;
 
   if (!contact || !contact.email) {
     return res.status(400).json({ status: "fail", message: "Contact email required" });
   }
-
+  console.log(req.body)
   contact.email = contact.email.toLowerCase();
+
   const meetingDateTime = new Date(`${date}T${time}:00Z`);
+if (meetingDateTime < new Date()) {
+  return res.status(400).json({ status: "fail", message: "Cannot schedule a meeting in the past" });
+}
 
-  if (meetingDateTime < new Date()) {
-    return res.status(400).json({ status: "fail", message: "Cannot schedule a meeting in the past" });
-  }
 
-  // מציאת או יצירת איש קשר
-  const contactDoc = await findOrCreateContact(contact);
-  const userId = req.user ? req.user._id : null;
+  // const existingMeeting = await Meeting.findOne({ status: { $ne: "cancelled" } })
+ // בודק אם יש פגישה קיימת עם אותו אימייל ואותו נכס (לא משנה שעה)
+const existingMeeting = await Meeting.findOne({
+  email: contact.email,
+  productId,
+  status: { $ne: "cancelled" }
+});
 
-  // בדיקה אם קיימת פגישה עם אותו איש קשר ואותו נכס
-  const existingMeeting = await Meeting.findOne({
-    contact: contactDoc._id,
-    productId,
-    status: { $ne: "cancelled" }
-  });
+
+
+
+
+  let contactDoc = await findOrCreateContact(contact);
+  let userId = req.user ? req.user._id : null;
 
   if (existingMeeting && !reschedule) {
+    // כפילות – מחזירים ללקוח פרטים על הפגישה הקיימת
     return res.status(409).json({
       status: "fail",
       message: "You already have a meeting",
@@ -179,11 +53,11 @@ export const createMeeting = asyncHandler(async (req, res) => {
 
   // אם זו החלפה – מסמנים את הישנה כ-cancelled
   if (existingMeeting && reschedule) {
-    existingMeeting.status = "cancelled";
-    await existingMeeting.save();
+   await Meeting.deleteOne({ _id: existingMeeting._id });
 
-    // שולחים מיילים ברקע על ביטול והחלפה
-    const rescheduleMails = [
+
+    // שולחים מייל ללקוח על הפגישה החדשה ולחברה על הביטול והפגישה החדשה
+    const mails = [
       sendMail({
         to: contact.email,
         subject: "🗓️ Your meeting has been rescheduled",
@@ -203,7 +77,11 @@ export const createMeeting = asyncHandler(async (req, res) => {
       })
     ];
 
-    Promise.all(rescheduleMails).catch(err => console.error("Failed to send reschedule emails:", err));
+    try {
+      await Promise.all(mails);
+    } catch (err) {
+      console.error("Failed to send some emails", err);
+    }
   }
 
   // יוצרים את הפגישה החדשה
@@ -212,12 +90,13 @@ export const createMeeting = asyncHandler(async (req, res) => {
     contact: contactDoc._id,
     productId,
     date,
-    time
+    time,
+    email:contact.email
   });
 
-  // שליחת מיילים לפגישה חדשה (אם זו לא החלפה או פשוט יצירת פגישה חדשה)
+  // אם זו לא החלפה – שולחים מיילים רגילים
   if (!existingMeeting || !reschedule) {
-    const newMeetingMails = [
+    const mails = [
       sendMail({
         to: process.env.COMPANY_EMAIL,
         subject: "🗓️ New Meeting Scheduled",
@@ -230,25 +109,146 @@ export const createMeeting = asyncHandler(async (req, res) => {
              <strong>Email:</strong> ${contact.email || "-"}<br/>
              <strong>Phone:</strong> ${contact.phone || "-"}</p>
         `
-      }),
-      sendMail({
-        to: contact.email,
-        subject: `🗓️ Your Meeting is Scheduled`,
-        html: `
-          <h3>Your meeting is scheduled</h3>
-          <p><strong>Date:</strong> ${date}</p>
-          <p><strong>Time:</strong> ${time}</p>
-          <p><strong>Property:</strong> ${productId || "N/A"}</p>
-          <p>We look forward to seeing you!</p>
-        `
       })
     ];
 
-    Promise.all(newMeetingMails).catch(err => console.error("Failed to send new meeting emails:", err));
+    if (contact.email) {
+      mails.push(
+        sendMail({
+          to: contact.email,
+          subject: `🗓️ Your Meeting is Scheduled`,
+          html: `
+            <h3>Your meeting is scheduled</h3>
+            <p><strong>Date:</strong> ${date}</p>
+            <p><strong>Time:</strong> ${time}</p>
+            <p><strong>Property:</strong> ${productId || "N/A"}</p>
+            <p>We look forward to seeing you!</p>
+          `
+        })
+      );
+    }
+
+    try {
+      await Promise.all(mails);
+    } catch (err) {
+      console.error("Failed to send some emails", err);
+    }
   }
 
   res.status(201).json({ status: "success", data: meeting });
 });
+
+
+// export const createMeeting = asyncHandler(async (req, res) => {
+//   const { productId, date, time, contact, reschedule = false } = req.body;
+
+//   if (!contact || !contact.email) {
+//     return res.status(400).json({ status: "fail", message: "Contact email required" });
+//   }
+
+//   contact.email = contact.email.toLowerCase();
+//   const meetingDateTime = new Date(`${date}T${time}:00Z`);
+
+//   if (meetingDateTime < new Date()) {
+//     return res.status(400).json({ status: "fail", message: "Cannot schedule a meeting in the past" });
+//   }
+
+//   // מציאת או יצירת איש קשר
+//   const contactDoc = await findOrCreateContact(contact);
+//   const userId = req.user ? req.user._id : null;
+
+//   // בדיקה אם קיימת פגישה עם אותו איש קשר ואותו נכס
+//   const existingMeeting = await Meeting.findOne({
+//     contact: contactDoc._id,
+//     productId,
+//     status: { $ne: "cancelled" }
+//   });
+
+//   if (existingMeeting && !reschedule) {
+//     return res.status(409).json({
+//       status: "fail",
+//       message: "You already have a meeting",
+//       existingMeeting: {
+//         _id: existingMeeting._id,
+//         date: existingMeeting.date,
+//         time: existingMeeting.time,
+//         productId: existingMeeting.productId
+//       }
+//     });
+//   }
+
+//   // אם זו החלפה – מסמנים את הישנה כ-cancelled
+//   if (existingMeeting && reschedule) {
+//     existingMeeting.status = "cancelled";
+//     await existingMeeting.save();
+
+//     // שולחים מיילים ברקע על ביטול והחלפה
+//     const rescheduleMails = [
+//       sendMail({
+//         to: contact.email,
+//         subject: "🗓️ Your meeting has been rescheduled",
+//         html: `
+//           <p>Your previous meeting on <strong>${existingMeeting.date}</strong> at <strong>${existingMeeting.time}</strong> has been replaced.</p>
+//           <p>New meeting: <strong>${date}</strong> at <strong>${time}</strong>.</p>
+//         `
+//       }),
+//       sendMail({
+//         to: process.env.COMPANY_EMAIL,
+//         subject: "🗓️ Meeting Rescheduled",
+//         html: `
+//           <p>Meeting for <strong>${contact.name}</strong> has been updated.</p>
+//           <p>Previous: ${existingMeeting.date} at ${existingMeeting.time} (cancelled)</p>
+//           <p>New: ${date} at ${time}</p>
+//         `
+//       })
+//     ];
+
+//     Promise.all(rescheduleMails).catch(err => console.error("Failed to send reschedule emails:", err));
+//   }
+
+//   // יוצרים את הפגישה החדשה
+//   const meeting = await Meeting.create({
+//     user: userId,
+//     contact: contactDoc._id,
+//     productId,
+//     date,
+//     time
+//   });
+
+//   // שליחת מיילים לפגישה חדשה (אם זו לא החלפה או פשוט יצירת פגישה חדשה)
+//   if (!existingMeeting || !reschedule) {
+//     const newMeetingMails = [
+//       sendMail({
+//         to: process.env.COMPANY_EMAIL,
+//         subject: "🗓️ New Meeting Scheduled",
+//         html: `
+//           <h3>New meeting scheduled</h3>
+//           <p><strong>Date:</strong> ${date}</p>
+//           <p><strong>Time:</strong> ${time}</p>
+//           <p><strong>Property:</strong> ${productId || "N/A"}</p>
+//           <p><strong>Client:</strong> ${contact.name || "-"}<br/>
+//              <strong>Email:</strong> ${contact.email || "-"}<br/>
+//              <strong>Phone:</strong> ${contact.phone || "-"}</p>
+//         `
+//       }),
+//       sendMail({
+//         to: contact.email,
+//         subject: `🗓️ Your Meeting is Scheduled`,
+//         html: `
+//           <h3>Your meeting is scheduled</h3>
+//           <p><strong>Date:</strong> ${date}</p>
+//           <p><strong>Time:</strong> ${time}</p>
+//           <p><strong>Property:</strong> ${productId || "N/A"}</p>
+//           <p>We look forward to seeing you!</p>
+//         `
+//       })
+//     ];
+
+//     Promise.all(newMeetingMails).catch(err => console.error("Failed to send new meeting emails:", err));
+//   }
+
+//   res.status(201).json({ status: "success", data: meeting });
+// });
 
 
 

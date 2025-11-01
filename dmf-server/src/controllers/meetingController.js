@@ -158,6 +158,8 @@ export const createMeeting = asyncHandler(async (req, res) => {
   // }
 
   contact.email = contact.email.toLowerCase();
+
+  console.log(date,time)
 const meetingDateTime = new Date(`${date}T${time}:00Z`);
 if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
   return res.status(400).json({ status: "fail", message: "Invalid date or time" });

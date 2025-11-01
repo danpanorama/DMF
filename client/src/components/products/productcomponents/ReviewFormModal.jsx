@@ -56,7 +56,7 @@ import GlobalButton from "../../buttons/GlobalButton";
 import useFormHandler from "../../common/FormHandler";
 import { useDispatch } from "react-redux";
 import { addReview } from "../../../redux/actions/reviewsActions";
-
+import { getDeviceId } from "../../utils/device";
 function ReviewFormModal({ isOpen, onClose, productId }) {
   const dispatch = useDispatch();
 
@@ -64,12 +64,11 @@ function ReviewFormModal({ isOpen, onClose, productId }) {
 initialValues: { name: "", email: "", rating: "", comment: "" }
 ,
    
-   
-    onSubmit: async (formValues) => {
-  
-       dispatch(addReview({ ...formValues, productId }));
-      onClose();
-    },
+onSubmit: async (formValues) => {
+  const deviceId = getDeviceId();
+  dispatch(addReview({ ...formValues, productId, deviceId }));
+  onClose();
+},
   });
 
   return (

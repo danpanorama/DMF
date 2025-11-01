@@ -139,6 +139,16 @@ import { v4 as uuidv4 } from 'uuid';
 //   });
 // });
 
+function parseMeetingDateTime(date, time) {
+  // אם date כבר פורמט ISO מלא
+  const isoDate = new Date(date);
+  if (!isNaN(isoDate.getTime()) && !time) return isoDate;
+
+  // אם date בפורמט YYYY-MM-DD
+  const [year, month, day] = date.split('-').map(Number);
+  const [hour, minute] = time.split(':').map(Number);
+  return new Date(year, month - 1, day, hour, minute);
+}
 
 
 
@@ -160,10 +170,11 @@ export const createMeeting = asyncHandler(async (req, res) => {
   contact.email = contact.email.toLowerCase();
 
   console.log(date,time)
-const meetingDateTime = new Date(`${date}T${time}:00Z`);
+const meetingDateTime = parseMeetingDateTime(date, time);
 if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
-  return res.status(400).json({ status: "fail", message: "Invalid date or time",data:date,time:time });
+  return res.status(400).json({ status: "fail", message: "Invalid date or time", data: date, time });
 }
+
 
   if (meetingDateTime < new Date()) {
     return res.status(400).json({ status: "fail", message: "Cannot schedule a meeting in the past" });
@@ -314,7 +325,7 @@ export const rescheduleMeeting = asyncHandler(async (req, res) => {
   }
 
   // בדיקה אם הפגישה החדשה לא בעבר
-  const meetingDateTime = new Date(`${date}T${time}:00Z`);
+const meetingDateTime = parseMeetingDateTime(date, time);
   if (meetingDateTime < new Date()) {
     return res.status(400).json({ status: "fail", message: "Cannot schedule a meeting in the past" });
   }

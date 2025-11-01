@@ -172,7 +172,7 @@ export const createMeeting = asyncHandler(async (req, res) => {
   console.log(date,time)
 const meetingDateTime = parseMeetingDateTime(date, time);
 if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
-  return res.status(400).json({ status: "fail", message: "Invalid date or time", data: date, time });
+  return res.status(400).json({ status: "fail", message: "Invalid date or time", data: date, time ,m:"change"});
 }
 
 

@@ -350,3 +350,65 @@ export const rescheduleMeeting = asyncHandler(async (req, res) => {
     }),
   ]).catch((err) => console.error("Failed to send reschedule emails:", err));
 });
+
+
+
+
+
+
+
+
+
+
+
+export const approveMeeting = asyncHandler(async (req, res) => {
+  const { token } = req.params;
+
+  const meeting = await Meeting.findOne({ approvalToken: token });
+  if (!meeting) {
+    return res.status(404).send("<h2>Meeting not found</h2>");
+  }
+
+  meeting.companyStatus = "approved";
+  meeting.status = "confirmed";
+  await meeting.save();
+
+  // מייל ללקוח על אישור
+  try {
+    await sendMail({
+      to: meeting.email,
+      subject: "🗓️ Your Meeting has been approved",
+      html: `<p>Your meeting on <strong>${meeting.date}</strong> at <strong>${meeting.time}</strong> has been approved.</p>`
+    });
+  } catch (err) {
+    console.error("Failed to send approval email:", err);
+  }
+
+  res.send("<h2>Meeting approved!</h2>");
+});
+
+export const rejectMeeting = asyncHandler(async (req, res) => {
+  const { token } = req.params;
+
+  const meeting = await Meeting.findOne({ approvalToken: token });
+  if (!meeting) {
+    return res.status(404).send("<h2>Meeting not found</h2>");
+  }
+
+  meeting.companyStatus = "rejected";
+  meeting.status = "cancelled";
+  await meeting.save();
+
+  // מייל ללקוח על ביטול
+  try {
+    await sendMail({
+      to: meeting.email,
+      subject: "🗓️ Your Meeting has been cancelled",
+      html: `<p>Your meeting on <strong>${meeting.date}</strong> at <strong>${meeting.time}</strong> has been cancelled.</p>`
+    });
+  } catch (err) {
+    console.error("Failed to send rejection email:", err);
+  }
+
+  res.send("<h2>Meeting rejected!</h2>");
+});

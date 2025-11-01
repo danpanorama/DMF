@@ -138,17 +138,21 @@ import { v4 as uuidv4 } from 'uuid';
 //     data: meeting
 //   });
 // });
-
 function parseMeetingDateTime(date, time) {
   // אם date כבר פורמט ISO מלא
-  const isoDate = new Date(date);
-  if (!isNaN(isoDate.getTime()) && !time) return isoDate;
+  if (date.includes('T')) {
+    const isoDate = new Date(date);
+    if (!isNaN(isoDate.getTime())) return isoDate;
+  }
 
-  // אם date בפורמט YYYY-MM-DD
+  // אם date בפורמט YYYY-MM-DD ו־time נפרד
+  if (!date || !time) return null; // בדיקה בסיסית
   const [year, month, day] = date.split('-').map(Number);
   const [hour, minute] = time.split(':').map(Number);
-  return new Date(year, month - 1, day, hour, minute);
+  const dt = new Date(year, month - 1, day, hour, minute);
+  return isNaN(dt.getTime()) ? null : dt;
 }
+
 
 
 

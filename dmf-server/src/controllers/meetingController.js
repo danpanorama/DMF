@@ -353,3 +353,65 @@ export const getAvailableMeetings = asyncHandler(async (req, res) => {
 
   res.json({ status: 'success', data: availableDates });
 });
+
+
+export const rescheduleMeeting = asyncHandler(async (req, res) => {
+  const { date, time, contact, productId } = req.body;
+  const meetingId = req.params.id;
+
+  // בדיקה ראשונית
+  if (!contact || !contact.email) {
+    return res.status(400).json({ status: "fail", message: "Contact email required" });
+  }
+
+  const existingMeeting = await Meeting.findById(meetingId);
+  if (!existingMeeting) {
+    return res.status(404).json({ status: "fail", message: "Meeting not found" });
+  }
+
+  // בדיקה אם הפגישה החדשה לא בעבר
+  const meetingDateTime = new Date(`${date}T${time}:00Z`);
+  if (meetingDateTime < new Date()) {
+    return res.status(400).json({ status: "fail", message: "Cannot schedule a meeting in the past" });
+  }
+
+  // מחיקת הפגישה הישנה
+  await Meeting.deleteOne({ _id: meetingId });
+
+  // מציאת/יצירת איש הקשר
+  const contactDoc = await findOrCreateContact(contact);
+
+  // יצירת פגישה חדשה
+  const newMeeting = await Meeting.create({
+    user: req.user ? req.user._id : null,
+    contact: contactDoc._id,
+    productId: productId || existingMeeting.productId,
+    date,
+    time,
+    email: contact.email.toLowerCase(),
+  });
+
+  // מחזירים תשובה ללקוח מיד כדי לא לחכות למיילים
+  res.status(200).json({ status: "success", data: newMeeting });
+
+  // שליחת מיילים ברקע (לא חוסם את הבקשה)
+  Promise.all([
+    sendMail({
+      to: contact.email,
+      subject: "🗓️ Your meeting has been rescheduled",
+      html: `
+        <p>Your previous meeting on <strong>${existingMeeting.date}</strong> at <strong>${existingMeeting.time}</strong> has been replaced.</p>
+        <p>New meeting: <strong>${date}</strong> at <strong>${time}</strong>.</p>
+      `,
+    }),
+    sendMail({
+      to: process.env.COMPANY_EMAIL,
+      subject: "🗓️ Meeting Rescheduled",
+      html: `
+        <p>Meeting for <strong>${contact.name}</strong> has been updated.</p>
+        <p>Previous: ${existingMeeting.date} at ${existingMeeting.time} (cancelled)</p>
+        <p>New: ${date} at ${time}</p>
+      `,
+    }),
+  ]).catch((err) => console.error("Failed to send reschedule emails:", err));
+});

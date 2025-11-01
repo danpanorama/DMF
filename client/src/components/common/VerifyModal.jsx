@@ -81,8 +81,9 @@ dispatch(showLoader())
 
   const replaceMeeting = async () => {
   if (!conflictMeeting || !contact) return;
-
+dispatch(showLoader())
   try {
+
     await api.put(`/meetings/${conflictMeeting._id}/reschedule`, {
       productId,
       date,
@@ -105,6 +106,8 @@ dispatch(showLoader())
     onClose();
   } catch (err) {
     alert("Failed to replace meeting: " + err.message);
+  }finally{
+    dispatch(hideLoader())
   }
 };
 

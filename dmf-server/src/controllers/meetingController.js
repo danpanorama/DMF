@@ -181,7 +181,7 @@ if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
 
   // מציאת או יצירת איש קשר
   const contactDoc = await findOrCreateContact(contact);
-  const userId = req.user ? req.user._id : contact.name;
+  const userId = req.user ? req.user._id : null;
 
   // בדיקה אם קיימת פגישה עם אותו email ואותו נכס
  const existingMeeting = await Meeting.findOne({

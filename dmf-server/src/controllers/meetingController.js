@@ -206,35 +206,35 @@ if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
     });
   }
 
-  // אם זו החלפה – מבטלים את הישנה
-  if (existingMeeting && reschedule) {
-    existingMeeting.status = "cancelled";
-    await existingMeeting.save();
+  // // אם זו החלפה – מבטלים את הישנה
+  // if (existingMeeting && reschedule) {
+  //   existingMeeting.status = "cancelled";
+  //   await existingMeeting.save();
 
-    try {
-      await Promise.all([
-        sendMail({
-          to: contact.email,
-          subject: "🗓️ Your meeting has been rescheduled",
-          html: `<p>Your previous meeting on <strong>${existingMeeting.date}</strong> at <strong>${existingMeeting.time}</strong> has been replaced.</p>
-                 <p>New meeting: <strong>${date}</strong> at <strong>${time}</strong>.</p>`
-        }),
-        sendMail({
-          to: process.env.COMPANY_EMAIL,
-          subject: "🗓️ Meeting Rescheduled",
-          html: `<p>Meeting for <strong>${contact.name}</strong> has been updated.</p>
-                 <p>Previous: ${existingMeeting.date} at ${existingMeeting.time} (cancelled)</p>
-                 <p>New: ${date} at ${time}</p>`
-        })
-      ]);
-    } catch (err) {
-       return res.status(500).json({
-    status: "fail",
-    message: "Failed to send approval email to company",
-    error: err.message
-  });
-    }
-  }
+  //   try {
+  //     await Promise.all([
+  //       sendMail({
+  //         to: contact.email,
+  //         subject: "🗓️ Your meeting has been rescheduled",
+  //         html: `<p>Your previous meeting on <strong>${existingMeeting.date}</strong> at <strong>${existingMeeting.time}</strong> has been replaced.</p>
+  //                <p>New meeting: <strong>${date}</strong> at <strong>${time}</strong>.</p>`
+  //       }),
+  //       sendMail({
+  //         to: process.env.COMPANY_EMAIL,
+  //         subject: "🗓️ Meeting Rescheduled",
+  //         html: `<p>Meeting for <strong>${contact.name}</strong> has been updated.</p>
+  //                <p>Previous: ${existingMeeting.date} at ${existingMeeting.time} (cancelled)</p>
+  //                <p>New: ${date} at ${time}</p>`
+  //       })
+  //     ]);
+  //   } catch (err) {
+  //      return res.status(500).json({
+  //   status: "fail",
+  //   message: "Failed to send approval email to company",
+  //   error: err.message
+  // });
+  //   }
+  // }
 
   // יצירת token לאישור/ביטול
   const approvalToken = uuidv4();

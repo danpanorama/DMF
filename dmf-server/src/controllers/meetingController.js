@@ -165,11 +165,7 @@ export const createMeeting = asyncHandler(async (req, res) => {
     return res.status(400).json({ status: "fail", message: "Contact email required" });
   }
 
-  // contact.email = contact.email.toLowerCase();
-  // const meetingDateTime = new Date(`${date}T${time}:00Z`);
-  // if (isNaN(meetingDateTime.getTime())) {
-  //   return res.status(400).json({ status: "fail", message: "Invalid date or time" });
-  // }
+  
 
   contact.email = contact.email.toLowerCase();
 
@@ -188,11 +184,13 @@ if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
   const userId = req.user ? req.user._id : null;
 
   // בדיקה אם קיימת פגישה עם אותו email ואותו נכס
-  const existingMeeting = await Meeting.findOne({
-    email: contact.email,
-    productId,
-    status: { $ne: "cancelled" }
-  });
+ const existingMeeting = await Meeting.findOne({
+  email: contact.email,
+  productId,
+  date,
+  status: { $ne: "cancelled" }
+});
+
 
   if (existingMeeting && !reschedule) {
     return res.status(409).json({
@@ -202,7 +200,8 @@ if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
         _id: existingMeeting._id,
         date: existingMeeting.date,
         time: existingMeeting.time,
-        productId: existingMeeting.productId
+        productId: existingMeeting.productId,
+        here:"here"
       }
     });
   }

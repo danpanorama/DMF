@@ -187,7 +187,6 @@ if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
  const existingMeeting = await Meeting.findOne({
   email: contact.email,
   productId,
-  date,
   status: { $ne: "cancelled" }
 });
 

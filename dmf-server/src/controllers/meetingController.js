@@ -173,7 +173,6 @@ export const createMeeting = asyncHandler(async (req, res) => {
 
   contact.email = contact.email.toLowerCase();
 
-  console.log(date,time)
 const meetingDateTime = parseMeetingDateTime(date, time);
 if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
   return res.status(400).json({ status: "fail", message: "Invalid date or time", data: date, time ,m:"change"});
@@ -230,53 +229,128 @@ if (isNaN(meetingDateTime.getTime()) || meetingDateTime < new Date()) {
         })
       ]);
     } catch (err) {
-      console.error("Failed to send reschedule emails:", err);
+       return res.status(500).json({
+    status: "fail",
+    message: "Failed to send approval email to company",
+    error: err.message
+  });
     }
   }
 
   // יצירת token לאישור/ביטול
   const approvalToken = uuidv4();
 
-  // יוצרים את הפגישה החדשה
-  const meeting = await Meeting.create({
-    user: userId,
-    contact: contactDoc._id,
-    productId,
-    date,
-    time,
-    email: contact.email,
-    approvalToken,
-    companyStatus: "pending",
-    status: "pending"
-  });
+//   // יוצרים את הפגישה החדשה
+//   const meeting = await Meeting.create({
+//     user: userId,
+//     contact: contactDoc._id,
+//     productId,
+//     date,
+//     time,
+//     email: contact.email,
+//     approvalToken,
+//     companyStatus: "pending",
+//     status: "pending"
+//   });
 
-  // שליחת מייל לחברה עם כפתורי אישור/ביטול
-  try {
-    await sendMail({
-      to: process.env.COMPANY_EMAIL,
-      subject: "New Meeting Awaiting Approval",
-      html: `
-        <h3>Meeting Request</h3>
-        <p>Client: ${contact.name} (${contact.email})</p>
-        <p>Date: ${date}</p>
-        <p>Time: ${time}</p>
-        <p>Property: ${productId || "N/A"}</p>
-        <p>
-          <a href="${process.env.FRONTEND_URL}/approve/${approvalToken}">✅ Approve</a> |
-          <a href="${process.env.FRONTEND_URL}/reject/${approvalToken}">❌ Reject</a>
-        </p>
-      `
-    });
-  } catch (err) {
-    console.error("Failed to send approval email to company:", err);
-  }
+//   // שליחת מייל לחברה עם כפתורי אישור/ביטול
+//   try {
+//     await sendMail({
+//       to: process.env.COMPANY_EMAIL,
+//       subject: "New Meeting Awaiting Approval",
+//       html: `
+//         <h3>Meeting Request</h3>
+//         <p>Client: ${contact.name} (${contact.email})</p>
+//         <p>Date: ${date}</p>
+//         <p>Time: ${time}</p>
+//         <p>Property: ${productId || "N/A"}</p>
+//         <p>
+//           <a href="${process.env.FRONTEND_URL}/approve/${approvalToken}">✅ Approve</a> |
+//           <a href="${process.env.FRONTEND_URL}/reject/${approvalToken}">❌ Reject</a>
+//         </p>
+//       `
+//     });
+//   } catch (err) {
+//       return res.status(500).json({
+//     status: "fail",
+//     message: "Failed to send approval email to company",
+//     error: err.message
+//   });
+//   }
 
-  // מחזירים תשובה ללקוח מיידית
-  res.status(201).json({
-    status: "success",
-    message: "Meeting successfully scheduled. Awaiting company approval.",
-    data: meeting
-  });
+//   // מייל ללקוח על יצירת הפגישה
+// await sendMail({
+//   to: contact.email,
+//   subject: "🗓️ Your meeting request has been received",
+//   html: `
+//     <h3>Your Meeting Request</h3>
+//     <p>Date: ${date}</p>
+//     <p>Time: ${time}</p>
+//     <p>Property: ${productId || "N/A"}</p>
+//     <p>We will notify you once the company approves or rejects your meeting.</p>
+//   `
+// });
+
+
+//   // מחזירים תשובה ללקוח מיידית
+//   res.status(201).json({
+//     status: "success",
+//     message: "Meeting successfully scheduled. Awaiting company approval.",
+//     data: meeting
+//   });
+
+
+
+// יצירת הפגישה
+const meeting = await Meeting.create({
+  user: userId,
+  contact: contactDoc._id,
+  productId,
+  date,
+  time,
+  email: contact.email,
+  approvalToken,
+  companyStatus: "pending",
+  status: "pending"
+});
+
+// ✅ שולחים תשובה מיידית
+res.status(201).json({
+  status: "success",
+  message: "Meeting successfully scheduled. Awaiting company approval.",
+  data: meeting
+});
+
+// 📤 שולחים את המיילים ברקע (לא חוסם את הבקשה)
+Promise.all([
+  sendMail({
+    to: process.env.COMPANY_EMAIL,
+    subject: "New Meeting Awaiting Approval",
+    html: `
+      <h3>Meeting Request</h3>
+      <p>Client: ${contact.name} (${contact.email})</p>
+      <p>Date: ${date}</p>
+      <p>Time: ${time}</p>
+      <p>Property: ${productId || "N/A"}</p>
+      <p>
+        <a href="${process.env.FRONTEND_URL}/approve/${approvalToken}">✅ Approve</a> |
+        <a href="${process.env.FRONTEND_URL}/reject/${approvalToken}">❌ Reject</a>
+      </p>
+    `,
+  }),
+  sendMail({
+    to: contact.email,
+    subject: "🗓️ Your meeting request has been received",
+    html: `
+      <h3>Your Meeting Request</h3>
+      <p>Date: ${date}</p>
+      <p>Time: ${time}</p>
+      <p>Property: ${productId || "N/A"}</p>
+      <p>We will notify you once the company approves or rejects your meeting.</p>
+    `,
+  }),
+]).catch((err) => console.error("Failed to send emails:", err));
+
 });
 
 

@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.post('/', validate(meetingSchema), createMeeting);
 router.put('/:id/reschedule', rescheduleMeeting);
+router.put("/meetings/:id/reschedule", rescheduleMeeting);
 
 router.get("/approve/:token", approveMeeting);
 router.get("/reject/:token", rejectMeeting);

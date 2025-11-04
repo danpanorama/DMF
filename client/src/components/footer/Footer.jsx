@@ -5,6 +5,7 @@ import useFormHandler from "../common/FormHandler";
 import { useDispatch } from "react-redux";
 import { setError, clearError } from "../../redux/actions/errorActions";
 import axios from "axios";
+import api from '../../config/axiosConfig'
 import { hideLoader, showLoader } from "../../redux/actions/loaderActions";
 
 function Footer() {
@@ -16,7 +17,7 @@ function Footer() {
       try {
         dispatch(clearError());
         dispatch(showLoader())
-        const res = await axios.post("/api/contact", data);
+        const res = await api.post("/contact", data);
         console.log("Message sent:", res.data.message);
       } catch (err) {
         const msg = err.response?.data?.message || "Failed to send your message.";

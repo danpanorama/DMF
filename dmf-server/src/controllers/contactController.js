@@ -52,7 +52,7 @@ export const sendContactMessage = asyncHandler(async (req, res) => {
   // שמירה/עדכון הלקוח
   await findOrCreateContact({ name, email, phone, message });
 
-
+try {
   await sendMail({
     to: process.env.CONTACT_RECEIVER || "your@email.com", // מקבל ההודעות
     subject: `New contact from ${name}`,
@@ -73,4 +73,9 @@ export const sendContactMessage = asyncHandler(async (req, res) => {
   });
 
   res.status(200).json({ message: "Message sent successfully!" });
+
+  }catch(err) {
+  console.error("Mail sending failed:", err);
+  return res.status(500).json({ message: "Failed to send email", error: err.message });
+}
 });

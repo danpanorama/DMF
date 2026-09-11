@@ -92,8 +92,8 @@ background-color: #333;
 
 /* media query למובייל */
 @media(min-width: 768px){
-  .navbar .hamburger,
+  /* .navbar .hamburger,
   .navbar .menu {
     display: none; 
-  }
+  } */
 }

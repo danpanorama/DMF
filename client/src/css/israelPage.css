@@ -13,9 +13,9 @@
 /* HERO */
 
 .israelHero {
-  height: 40vh;
+  height: 60vh;
   min-height: 300px;
- 
+  padding: 0 7% 7vh;
   display: flex;
   align-items: flex-end;
   background-image:  linear-gradient(rgba(0, 0, 0, 0.935), rgba(0, 0, 0, 0.962)) ;

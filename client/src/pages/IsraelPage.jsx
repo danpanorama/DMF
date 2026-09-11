@@ -16,7 +16,7 @@ function IsraelPage() {
       type: "Development & Value Creation",
       description:
         "A complex development opportunity in the heart of Jaffa, combining an existing property, planning rights, preservation considerations and long-term development potential.",
-      image: "/images/israel/7023/main.jpg",
+      image: "/yefet.png",
       stats: [
         { label: "Parcel", value: "331 m²" },
         { label: "Land Use", value: "Residential D" },

@@ -20,7 +20,7 @@ function Home() {
         <WayThessaloniki/>
     <AboutUs/>
         <CTASection/>
-        <ReviewsSection/>
+        {/* <ReviewsSection/> */}
     </div>
    
     </div>

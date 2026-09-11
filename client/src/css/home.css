@@ -11,6 +11,23 @@
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
 }
+.heroSectionFirstPageContainer{
+    position: relative;
+  height: 40vh; 
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid white;
+  outline-offset: -5px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-image: url('../assets/dmf.png');
+  background-size: cover;
+  object-fit: contain;
+  background-position: center;
+}
 
 .heroVideo {
   position: absolute;
@@ -56,4 +73,10 @@
   /* .imageSectionProduct{
     height: 400px !important;
   } */
+}
+
+
+
+.cw{
+  color: white;
 }

@@ -56,14 +56,21 @@ function NavbarMenu({ menuOpen, setMenuOpen }) {
       {/* לינקים מלמעלה למטה */}
       <div className="menu-links-vertical">
         <Link to="/" onClick={() => setMenuOpen(false)}> Home</Link>
+               <Link to="/greece" onClick={() => setMenuOpen(false)}> Greece</Link>
+                      <Link to="/israel" onClick={() => setMenuOpen(false)}> Israel</Link>
+
         <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
         <Link to="/products" onClick={() => setMenuOpen(false)}>Appartment</Link>
         <Link to="/contact" onClick={() => setMenuOpen(false)}> Contact</Link>
+     
       </div>
 
       {/* לינקים בגריד */}
       <div className="menu-links-grid">
         <Link to="/" onClick={() => setMenuOpen(false)}> HOME</Link>
+                      <Link to="/greece" onClick={() => setMenuOpen(false)}> Greece</Link>
+                      <Link to="/israel" onClick={() => setMenuOpen(false)}> Israel</Link>
+
         <Link to="/about" onClick={() => setMenuOpen(false)}>ABOUT</Link>
         <Link to="/products" onClick={() => setMenuOpen(false)}>APPARTMENT</Link>
         <Link to="/contact" onClick={() => setMenuOpen(false)}> CONTACT</Link>

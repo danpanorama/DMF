@@ -17,8 +17,8 @@ function Footer() {
       try {
         dispatch(clearError());
         dispatch(showLoader())
-        const res = await api.post("/contact", data);
-        console.log("Message sent:", res.data.message);
+        // const res = await api.post("/contact", data);
+        // console.log("Message sent:", res.data.message);
       } catch (err) {
         const msg = err.response?.data?.message || "Failed to send your message.";
         dispatch(setError("Contact Error", msg));

@@ -13,7 +13,8 @@ function VerifyModal({ isOpen, onClose, onVerifySuccess, productId, date, time }
   const [name, setName] = useState("");
   const [conflictMeeting, setConflictMeeting] = useState(null); // לשמירת מידע על כפילות
   const [showConflictOptions, setShowConflictOptions] = useState(false);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
   const sendVerification = async () => {
     if (!contact.trim()) return alert("Please enter phone or email");
 
@@ -84,7 +85,7 @@ dispatch(showLoader())
 dispatch(showLoader())
   try {
 
-    await api.put(`/meetings/${conflictMeeting._id}/reschedule`, {
+    await api.put(`/meetings/${conflictMeeting.id}/reschedule`, {
       productId,
       date,
       time,

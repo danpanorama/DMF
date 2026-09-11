@@ -1,0 +1,586 @@
+/* =========================
+   ISRAEL PAGE
+========================= */
+
+.israelPage {
+  width: 100%;
+  background: #f7f7f4;
+  color: #111;
+  overflow: hidden;
+}
+
+
+/* HERO */
+
+.israelHero {
+  height: 40vh;
+  min-height: 300px;
+ 
+  display: flex;
+  align-items: flex-end;
+  background-image:  linear-gradient(rgba(0, 0, 0, 0.935), rgba(0, 0, 0, 0.962)) ;
+  background-size: cover;
+  background-position: center;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+
+}
+.israelHero h1{
+    color: white;
+}
+
+/* .israelHeroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.72),
+    rgba(0, 0, 0, 0.25)
+  );
+} */
+
+.israelHeroContent {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 850px;
+}
+
+.israelEyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+ color: white;
+  margin-bottom: 20px;
+
+  opacity: 0.75;
+}
+
+.israelHero h1 {
+  font-size: clamp(4rem, 10vw, 9rem);
+
+  line-height: 0.82;
+
+  font-weight: 500;
+
+  letter-spacing: -6px;
+
+  margin: 0;
+}
+
+.israelHero h1 span {
+  display: block;
+  font-weight: 300;
+}
+
+.israelHeroDescription {
+  max-width: 550px;
+
+  margin-top: 35px;
+
+  line-height: 1.7;
+
+  color: rgba(255,255,255,0.8);
+}
+
+.israelHeroBottom {
+  position: absolute;
+
+  bottom: 30px;
+  right: 7%;
+
+  z-index: 2;
+
+  color: white;
+
+  display: flex;
+  gap: 40px;
+
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+
+  opacity: 0.75;
+}
+
+
+/* INTRO */
+
+.israelIntro {
+  width: 88%;
+
+  margin: 0 auto;
+
+  padding: 120px 0;
+
+  display: grid;
+
+  grid-template-columns: 0.5fr 1.5fr;
+
+  border-bottom: 1px solid #ccc;
+}
+
+.israelIntroLabel {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+
+  color: #777;
+}
+
+.israelIntroContent h2 {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+
+  font-weight: 400;
+
+  line-height: 1.05;
+
+  margin: 0;
+}
+
+.israelIntroContent p {
+  max-width: 650px;
+
+  margin-top: 35px;
+
+  font-size: 1.05rem;
+
+  line-height: 1.8;
+
+  color: #666;
+}
+
+
+/* PROJECTS */
+
+.israelProjects {
+  width: 88%;
+
+  margin: 0 auto;
+
+  padding: 120px 0;
+}
+
+.israelProjectsHeader {
+  margin-bottom: 70px;
+}
+
+.israelProjectsHeader p {
+  font-size: 0.7rem;
+
+  letter-spacing: 3px;
+
+  color: #777;
+}
+
+.israelProjectsHeader h2 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+
+  font-weight: 400;
+
+  margin-top: 10px;
+}
+
+
+/* PROJECT */
+
+.israelProject {
+  display: grid;
+
+  grid-template-columns: 1.15fr 0.85fr;
+
+  gap: 60px;
+
+  margin-bottom: 140px;
+
+  cursor: pointer;
+}
+
+.israelProject:nth-of-type(odd) {
+  grid-template-columns: 0.85fr 1.15fr;
+}
+
+.israelProjectImage {
+  height: 650px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 30px;
+
+  background: #ddd;
+}
+
+.israelProjectImage img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.7s ease;
+}
+
+.israelProject:hover .israelProjectImage img {
+  transform: scale(1.035);
+}
+
+.israelProjectNumber {
+  position: absolute;
+
+  top: 25px;
+  left: 25px;
+
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+
+  border-radius: 50%;
+
+  font-size: 0.75rem;
+}
+
+.israelProjectType {
+  position: absolute;
+
+  bottom: 25px;
+  left: 25px;
+
+  padding: 10px 17px;
+
+  background: rgba(255,255,255,0.9);
+
+  border-radius: 20px;
+
+  font-size: 0.7rem;
+
+  letter-spacing: 1px;
+}
+
+
+/* INFO */
+
+.israelProjectInfo {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.israelProjectLocation {
+  font-size: 0.7rem;
+
+  letter-spacing: 2px;
+
+  color: #777;
+
+  margin-bottom: 20px;
+}
+
+.israelProjectInfo h2 {
+  font-size: clamp(2.3rem, 4vw, 4.3rem);
+
+  line-height: 1;
+
+  font-weight: 400;
+
+  margin: 0;
+}
+
+.israelProjectInfo h3 {
+  font-size: 1.1rem;
+
+  font-weight: 400;
+
+  color: #777;
+
+  margin-top: 12px;
+}
+
+.israelProjectDescription {
+  max-width: 550px;
+
+  margin-top: 30px;
+
+  line-height: 1.8;
+
+  color: #555;
+}
+
+
+/* BLOCK / PARCEL */
+
+.israelProjectPlanning {
+  display: flex;
+
+  gap: 70px;
+
+  padding: 30px 0;
+
+  margin-top: 30px;
+
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.israelProjectPlanning div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.israelProjectPlanning span {
+  font-size: 0.65rem;
+
+  letter-spacing: 2px;
+
+  color: #888;
+}
+
+.israelProjectPlanning strong {
+  font-size: 1.4rem;
+
+  font-weight: 400;
+}
+
+
+/* STATS */
+
+.israelProjectStats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  margin-top: 25px;
+
+  gap: 15px;
+}
+
+.israelStat {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.israelStat span {
+  font-size: 0.65rem;
+
+  letter-spacing: 1px;
+
+  color: #888;
+}
+
+.israelStat strong {
+  font-weight: 500;
+}
+.israelApproach h2 {
+    color: white;
+}
+.israelApproach h3 {
+    color: white;
+}
+
+/* BUTTON */
+
+.israelViewProject {
+  width: fit-content;
+
+  margin-top: 40px;
+
+  padding: 13px 0;
+
+  border: none;
+  border-bottom: 1px solid #111;
+
+  /* background: transparent; */
+
+  font-size: 0.9rem;
+
+  cursor: pointer;
+
+  display: flex;
+
+  gap: 25px;
+}
+
+
+/* APPROACH */
+
+.israelApproach {
+  background: #111;
+
+  color: white;
+
+  padding: 120px 7%;
+}
+
+.israelApproachSmall {
+  font-size: 0.7rem;
+
+  letter-spacing: 3px;
+
+  opacity: 0.55;
+}
+
+.israelApproach > h2 {
+  font-size: clamp(2.8rem, 6vw, 6rem);
+
+  line-height: 1;
+
+  font-weight: 300;
+
+  margin: 40px 0 90px;
+}
+
+.israelApproach > h2 span {
+  color: #777;
+}
+
+.israelApproachGrid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 50px;
+}
+
+.israelApproachGrid > div {
+  border-top: 1px solid #555;
+
+  padding-top: 25px;
+}
+
+.israelApproachGrid span {
+  font-size: 0.7rem;
+
+  color: #777;
+}
+
+.israelApproachGrid h3 {
+  font-size: 1.6rem;
+
+  font-weight: 400;
+
+  margin: 25px 0 15px;
+}
+
+.israelApproachGrid p {
+  line-height: 1.7;
+
+  color: #aaa;
+}
+
+
+/* NEXT */
+
+.israelNextMarket {
+  padding: 110px 7%;
+
+  cursor: pointer;
+}
+
+.israelNextMarket > p:first-child {
+  font-size: 0.7rem;
+
+  letter-spacing: 3px;
+
+  color: #888;
+}
+
+.israelNextMarket h2 {
+  font-size: clamp(4rem, 10vw, 9rem);
+
+  font-weight: 300;
+
+  margin: 15px 0;
+
+  transition: 0.3s ease;
+}
+
+.israelNextMarket:hover h2 {
+  transform: translateX(10px);
+}
+
+.israelNextSubtitle {
+  color: #777;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+  .israelHero {
+    height: 45vh;
+    min-height: 200px;
+
+    padding: 0 25px 70px;
+  }
+
+  .israelHero h1 {
+    letter-spacing: -3px;
+  }
+
+  .israelHeroBottom {
+    display: none;
+  }
+
+
+  .israelIntro {
+    width: calc(100% - 40px);
+
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    padding: 80px 0;
+  }
+
+
+  .israelProjects {
+    width: calc(100% - 40px);
+
+    padding: 80px 0;
+  }
+
+
+  .israelProject,
+  .israelProject:nth-of-type(odd) {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    margin-bottom: 100px;
+  }
+
+
+  .israelProjectImage {
+    height: 450px;
+  }
+
+
+  .israelProjectStats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+  .israelApproach {
+    padding: 80px 20px;
+  }
+
+
+  .israelApproachGrid {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+
+  .israelNextMarket {
+    padding: 80px 20px;
+  }
+}

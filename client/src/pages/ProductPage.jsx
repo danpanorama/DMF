@@ -128,7 +128,7 @@
 
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-
+import RenovationStory from '../components/products/RenovationStory';
 import projects from '../database/properties';
 
 // קומפוננטות
@@ -229,7 +229,18 @@ function ProductPage() {
 
         <ProductMap address={product.address} />
 
+<br />
+ <br />
+  <RenovationStory
+  renovation={product.renovation}
+/>
+
+
+
         <ContactForm />
+
+
+
       </div>
     </div>
   );

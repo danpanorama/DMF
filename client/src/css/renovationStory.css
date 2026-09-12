@@ -1,0 +1,249 @@
+.renovationStory {
+  width: 100%;
+  margin-top: 100px;
+  padding: 100px 0;
+  border-top: 1px solid #d8d8d8;
+}
+
+.renovationStoryHeader {
+  width: 88%;
+  margin: 0 auto 80px;
+  max-width: 1400px;
+}
+
+.renovationEyebrow {
+  margin: 0 0 24px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.renovationStoryHeader h2 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(42px, 6vw, 88px);
+  line-height: 0.95;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.renovationIntro {
+  max-width: 680px;
+  margin-top: 40px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #666;
+}
+
+
+/* STEPS */
+
+.renovationSteps {
+  width: 88%;
+  max-width: 1400px;
+  margin: 0 auto 120px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  border-top: 1px solid #ccc;
+}
+
+.renovationStep {
+  min-height: 300px;
+  padding: 35px 28px 30px 0;
+
+  border-right: 1px solid #ccc;
+}
+
+.renovationStep:not(:first-child) {
+  padding-left: 28px;
+}
+
+.renovationStep:last-child {
+  border-right: none;
+}
+
+.renovationStepNumber {
+  display: block;
+  margin-bottom: 65px;
+
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: #888;
+}
+
+.renovationStep h3 {
+  margin: 0 0 20px;
+
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.renovationStep p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666;
+}
+
+
+/* GALLERY */
+
+.renovationGallery {
+  margin-top: 120px;
+}
+
+.renovationGalleryHeader {
+  width: 88%;
+  max-width: 1400px;
+  margin: 0 auto 45px;
+}
+
+.renovationGalleryHeader > p {
+  margin: 0 0 12px;
+
+  font-size: 11px;
+  letter-spacing: 0.17em;
+  font-weight: 600;
+}
+
+.renovationGalleryHeader h2 {
+  margin: 0 0 18px;
+
+  font-size: clamp(34px, 5vw, 70px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+}
+
+.renovationGalleryHeader span {
+  display: block;
+  max-width: 550px;
+
+  color: #777;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.renovationGalleryGrid {
+  width: 94%;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.renovationGalleryImage {
+  height: 600px;
+  overflow: hidden;
+
+  background: #eee;
+}
+
+.renovationGalleryImage:nth-child(3n) {
+  grid-column: span 2;
+  height: 750px;
+}
+
+.renovationGalleryImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 0.7s ease;
+}
+
+.renovationGalleryImage:hover img {
+  transform: scale(1.025);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+  .renovationStory {
+    margin-top: 60px;
+    padding: 70px 0;
+  }
+
+  .renovationStoryHeader {
+    width: 90%;
+    margin-bottom: 55px;
+  }
+
+  .renovationStoryHeader h2 {
+    font-size: 48px;
+  }
+
+  .renovationIntro {
+    font-size: 16px;
+  }
+
+  .renovationSteps {
+    width: 90%;
+    display: block;
+  }
+
+  .renovationStep,
+  .renovationStep:not(:first-child) {
+    min-height: auto;
+
+    padding: 30px 0 40px;
+
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .renovationStepNumber {
+    margin-bottom: 35px;
+  }
+
+  .renovationGallery {
+    margin-top: 80px;
+  }
+
+  .renovationGalleryHeader {
+    width: 90%;
+  }
+
+  .renovationGalleryGrid {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .renovationGalleryImage,
+  .renovationGalleryImage:nth-child(3n) {
+    grid-column: auto;
+    height: 420px;
+  }
+}
+
+
+.renovationGalleryImage img,
+.renovationGalleryImage video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.renovationGalleryImage img,
+.renovationGalleryImage video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.renovationGalleryImage:hover img,
+.renovationGalleryImage:hover video {
+  transform: scale(1.025);
+}

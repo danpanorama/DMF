@@ -99,34 +99,95 @@ const properties = [
       '/images/sachini/6.png',
       '/images/sachini/7.png',
     ],
+    
     businessPotential:
       '💶 Long-term rent: €650–€700/month. Airbnb daily rate: €87–€115.',
     price: 90000,
   },
 
   {
-    id: 'karaiskaki-thessaloniki',
-    name: 'Newly Renovated Apartment',
-    description:
-      'Fully renovated 3-room apartment, 52 sqm, on the ground floor.',
-    location: 'Near the sea and university area',
-    rooms: 3,
-    bathrooms: 1,
-    floor: 'G',
-    size: 52,
-    address: 'Karaiskaki 19, Thessaloniki 546 41',
-    images: [
-      '/images/karaskali/kar1.jpeg',
-      '/images/karaskali/kar2.jpeg',
-      '/images/karaskali/kar3.jpeg',
-      '/images/karaskali/kar4.jpeg',
-      '/images/karaskali/kar5.jpeg',
-      '/images/karaskali/kar6.jpeg',
+  id: 'karaiskaki-thessaloniki',
+
+  name: 'Newly Renovated Apartment',
+
+  description:
+    'Fully renovated 3-room apartment, 52 sqm, on the ground floor.',
+
+  location: 'Near the sea and university area',
+
+  rooms: 3,
+  bathrooms: 1,
+  floor: 'G',
+  size: 52,
+
+  address: 'Karaiskaki 19, Thessaloniki 546 41',
+
+  images: [
+    '/images/karaskali/kar1.jpeg',
+    '/images/karaskali/kar2.jpeg',
+    '/images/karaskali/kar3.jpeg',
+    '/images/karaskali/kar4.jpeg',
+    '/images/karaskali/kar5.jpeg',
+    '/images/karaskali/kar6.jpeg',
+  ],
+
+  renovation: {
+    eyebrow: 'THE TRANSFORMATION',
+
+    title: 'From potential to a finished home.',
+
+    intro:
+      'We identified an apartment with strong potential in a strategic Thessaloniki location. The property required a complete renovation, but the layout, location and fundamentals gave us the opportunity to create significantly more value.',
+
+    steps: [
+      {
+        number: '01',
+        title: 'Identifying the Opportunity',
+        text:
+          'The process started by identifying an undervalued apartment with a good location, practical layout and clear renovation potential.',
+      },
+      {
+        number: '02',
+        title: 'Planning the Renovation',
+        text:
+          'We reviewed the existing condition and created a renovation strategy focused on functionality, clean design and long-term usability.',
+      },
+      {
+        number: '03',
+        title: 'Full Renovation',
+        text:
+          'The apartment underwent a complete renovation from the ground up, including electrical and plumbing work, flooring, kitchen, bathroom, finishes and interior improvements.',
+      },
+      {
+        number: '04',
+        title: 'Creating Value',
+        text:
+          'The objective was not simply to renovate the apartment, but to transform the asset into a modern property designed for stronger rental demand and long-term value.',
+      },
     ],
-    businessPotential:
-      '💶 Long-term rent: €400–€500/month. Popular with students.',
-    price: 84000,
+
+    beforeImages: [
+      
+      '/images/karaskali/before/3.jpeg',
+      '/images/karaskali/before/4.jpeg',
+      '/images/karaskali/before/v1.mp4',
+      '/images/karaskali/before/5.jpeg',
+      
+    ],
+
+    duringImages: [
+      '/images/karaskali/before/d2.jpeg',
+       '/images/karaskali/before/d1.jpeg',
+       '/images/karaskali/before/d3.jpeg',
+      '/images/karaskali/before/d4.jpeg',
+    ],
   },
+
+  businessPotential:
+    '💶 Long-term rent: €400–€500/month. Popular with students.',
+
+  price: 84000,
+},
 
   {
     id: 'strati-mirivili-thessaloniki',

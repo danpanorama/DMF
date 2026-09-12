@@ -7,9 +7,9 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 function ContactPage() {
   const officeInfo = {
-    phone: "+30 123 456 789",
+    phone: "+972 534273529",
     email: "info@dmf.com",
-    address: "123 Thessaloniki Street, Thessaloniki, Greece",
+    address: "19 karaskaki Street, Thessaloniki, Greece",
   };
 
   return (
@@ -26,7 +26,7 @@ function ContactPage() {
         <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
         <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
         <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://wa.me/+972534273529" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
     </div>
 

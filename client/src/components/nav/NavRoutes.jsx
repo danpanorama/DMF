@@ -8,6 +8,7 @@ import ContactPage from "../../pages/ContactPage";
 import FirstPage from "../../pages/FirstPage";
 import IsraelPage from "../../pages/IsraelPage";
 import JaffaUrbanRenewalPage from "../../pages/JaffaUrbanRenewalPage";
+import JaffaDevelopmentPage from "../../pages/JaffaDevelopmentPage";
 
 function NavRoutes() {
   return (
@@ -20,6 +21,10 @@ function NavRoutes() {
           <Route path="/products" element={<ProductsListPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/israel" element={<IsraelPage />} />
+          <Route
+  path="/israel/jaffa-development-7023"
+  element={<JaffaDevelopmentPage />}
+/>
           <Route
   path="/israel/jaffa-urban-renewal-7024"
   element={<JaffaUrbanRenewalPage />}

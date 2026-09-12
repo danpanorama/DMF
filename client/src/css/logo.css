@@ -13,4 +13,8 @@
     outline: 1px solid black;
     outline-offset: -5px;
     font-size: 2rem;
+    background-image: url('../assets/dmf.png');
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
 }

@@ -5,7 +5,7 @@ import '../../css/logo.css';
 function CircleLogo() {
   return (
     <div className="CircleLogoContainer">
-    <span>DMF</span>
+    {/* <span>DMF</span> */}
     
     </div>
   );
